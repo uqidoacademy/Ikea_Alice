@@ -32,6 +32,7 @@ public class Maximizer : Interactionable, IUsable, IGrabable {
 
     public void OnUse()
     {
-        EventManager.PreBecomeBigger();
+        if (EventManager.PreBecomeBigger != null)
+            EventManager.PreBecomeBigger();
     }
 }

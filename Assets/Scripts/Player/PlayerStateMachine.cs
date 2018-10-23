@@ -85,8 +85,8 @@ public class PlayerStateMachine: MonoBehaviour
 
     public void SetUp()
     {
-        EventManager.PostBecomeBigger += OnPlayerBig;
-        EventManager.PostBecomeSmaller += OnPlayerSmall;
+        EventManager.PreBecomeBigger += OnPlayerBig;
+        EventManager.PreBecomeSmaller += OnPlayerSmall;
     }
 
     /// <summary>
@@ -127,6 +127,10 @@ public class PlayerStateMachine: MonoBehaviour
         {
             this.OnPlayerSmall();
         }
+    }
+
+    private void Start() {
+        SetUp();
     }
 
     #endregion
