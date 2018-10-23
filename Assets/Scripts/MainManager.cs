@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class MainManager : MonoBehaviour
 {
-    public EventManager mngEvent;
 
     public string HandTag { get { return "HAND";  } }
     public string MouthTag { get { return "MOUTH"; } }
@@ -32,7 +31,6 @@ public class MainManager : MonoBehaviour
 
     public void Setup()
     {
-        this.mngEvent = EventManager.Instance;
     }
 
     #endregion

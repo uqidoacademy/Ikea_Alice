@@ -9,7 +9,12 @@ public interface IGrabable
 
 
     /// <summary>
-    /// What has to be done onGrab
+    /// What has to be done on grab
     /// </summary>
     void OnGrab();
+
+    /// <summary>
+    /// What has to be done on ungrab
+    /// </summary>
+    void OnUngrab();
 }

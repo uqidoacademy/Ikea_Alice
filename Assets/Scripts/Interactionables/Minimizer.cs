@@ -16,7 +16,7 @@ public class Minimizer : Interactionable, IUsable, IGrabable {
 
     public string[] GetCollisionTags()
     {
-        return new string[] { MainManager.Instance.MouthTag };
+        return new string[] {  };
     }
 
     public void OnGrab()

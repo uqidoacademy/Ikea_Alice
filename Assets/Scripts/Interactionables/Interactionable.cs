@@ -10,12 +10,16 @@ public class Interactionable : MonoBehaviour {
         if ((this is IUsable))
         {
             IUsable usable = (this as IUsable);
+
+            Debug.Log(collision.gameObject.tag);
+            Debug.Log(usable.GetCollisionTags());
+            Debug.Log(usable.CanBeUsed());
             if (usable.CanBeUsed() && TagIncluded(collision.gameObject.tag, usable.GetCollisionTags())) {
                 usable.OnUse();
             }
         }
 
-        if (this is IGrabable)
+        /*if (this is IGrabable)
         {
             IGrabable grabable = (this as IGrabable);
             string tag = collision.gameObject.tag;
@@ -24,7 +28,12 @@ public class Interactionable : MonoBehaviour {
             {
                 grabable.OnGrab();
             }
-        }
+        } */
+    }
+
+    public void OnUngrab() 
+    {
+
     }
 
     public void OnGrab()
@@ -33,9 +42,9 @@ public class Interactionable : MonoBehaviour {
 
         // TODO: Handle Hand Object
 
-        GameObject hand = GameObject.FindGameObjectWithTag(MainManager.Instance.HandTag) as GameObject;
-        this.transform.parent = hand.transform;
-        this.objectCanMove(false);
+        //GameObject hand = GameObject.FindGameObjectWithTag(MainManager.Instance.HandTag) as GameObject;
+        //this.transform.parent = hand.transform;
+        //this.objectCanMove(false);
     }
 
     protected void objectCanMove(bool active)

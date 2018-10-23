@@ -17,7 +17,7 @@ public class UnlockKey : Interactionable, IGrabable, IUsable {
 
     public string[] GetCollisionTags()
     {
-        return new string[] { "PORTA" };
+        return new string[] { "door" };
     }
 
     public void OnGrab()
@@ -27,7 +27,8 @@ public class UnlockKey : Interactionable, IGrabable, IUsable {
 
     public void OnUse()
     {
-        EventManager.PreOpenDoor();
+        if (EventManager.PreOpenDoor != null)
+            EventManager.PreOpenDoor();
     }
 
 
