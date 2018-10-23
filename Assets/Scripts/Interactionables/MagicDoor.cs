@@ -22,7 +22,6 @@ public class MagicDoor : Interactionable, IUsable {
 
     public void OnUse()
     {
-        // TODO: open door
         Debug.Log("Open door");
     }
 
