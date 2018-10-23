@@ -26,7 +26,8 @@ public class Minimizer : Interactionable, IUsable, IGrabable {
 
     public void OnUse()
     {
-        EventManager.PostBecomeSmaller();
+        if (EventManager.PreBecomeSmaller != null)
+            EventManager.PreBecomeSmaller();
     }
 
     // Use this for initialization
