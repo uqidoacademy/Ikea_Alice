@@ -1,15 +1,16 @@
 ﻿using DG.Tweening;
 using System;
 using UnityEngine;
+using UnityStandardAssets.Characters.FirstPerson;
 
 public class PlayerStateMachine: MonoBehaviour
 {
     public float AnimationTimer = 2.0f;
 
     // Scale points
-    public float ScaledBigHeight = 20;
-    public float ScaledMediumHeight = 10;
-    public float ScaledSmallHeight = 1;
+    public float ScaleBig ;
+    public float ScaledMedium ;
+    public float ScaledSmall ;
 
     #region Properties
     private PlayerState _currentState = PlayerState.medium;
@@ -43,25 +44,44 @@ public class PlayerStateMachine: MonoBehaviour
         switch (CurrentState)
         {
             case PlayerState.small:
-                ScalePlayerBy(ScaledSmallHeight);
+                DisableFPS();
+                ScalePlayerBy(ScaledSmall);
+                
                 break;
 
             case PlayerState.medium:
-                ScalePlayerBy(ScaledMediumHeight);
+                DisableFPS();
+                ScalePlayerBy(ScaledMedium);
+                
                 break;
 
             case PlayerState.big:
-                ScalePlayerBy(ScaledBigHeight);
-
+                DisableFPS();
+                ScalePlayerBy(ScaleBig);
                 break;
         }
     }
 
-    private void ScalePlayerBy(float newHeight)
+    #region OnScale
+    private void ScalePlayerBy(float newScale)
     {
-        transform.DOMove(new Vector3(transform.position.x, newHeight, transform.position.z), AnimationTimer);
+        transform.parent.DOScale(newScale, AnimationTimer).OnComplete(()=> { EnableFPS(); } );
     }
 
+    private void DisableFPS()
+    {
+        GetComponent<CharacterController>().enabled = false;
+        GetComponent<FirstPersonController>().enabled = false;
+    }
+
+
+    private void EnableFPS()
+    {
+        GetComponent<CharacterController>().enabled = true;
+        GetComponent<FirstPersonController>().enabled = true;
+    }
+
+    #endregion
 
     public void SetUp()
     {
@@ -99,11 +119,11 @@ public class PlayerStateMachine: MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.S))
+        if (Input.GetKeyDown(KeyCode.UpArrow))
         {
             this.OnPlayerBig();
         }
-        if (Input.GetKeyDown(KeyCode.G))
+        if (Input.GetKeyDown(KeyCode.DownArrow))
         {
             this.OnPlayerSmall();
         }
