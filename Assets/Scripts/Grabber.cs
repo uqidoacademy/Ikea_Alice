@@ -10,6 +10,7 @@ public class Grabber : MonoBehaviour {
     private Transform grabbedChild = null;
     private Vector3 initialScale;
 
+	public GameObject secondHand;
 
 	void OnTriggerEnter (Collider oggettoForseGrabbabile) {
 		IGrabable tempGrab = oggettoForseGrabbabile.gameObject.GetComponent<IGrabable>();
@@ -30,25 +31,39 @@ public class Grabber : MonoBehaviour {
 		// quando premo G per Grab
 		if(Input.GetKeyDown(KeyCode.Mouse0) && !grabbing && primoGrabbato != null){
 			(primoGrabbato.GetComponent<IGrabable>()).OnGrab();
-			primoGrabbato.GetComponent<Rigidbody>().isKinematic = true;    
+  
+			//Change parent of Child
             grabbedOriginalParent = primoGrabbato.transform.parent;
             primoGrabbato.transform.parent = transform.GetChild(0);
-            primoGrabbato.GetComponent<Renderer>().material.color = Color.green;
+
+            //Color grabbed
+			primoGrabbato.GetComponent<Renderer>().material.color = Color.green;
 			grabbing = true;
+
+			//Disable gravity and Rotation
+			primoGrabbato.GetComponent<Rigidbody>().useGravity = false;
+			primoGrabbato.GetComponent<Rigidbody>().freezeRotation = true;
 		} 
 
-		if(!Input.GetKey(KeyCode.Mouse0) && primoGrabbato != null && grabbing){
-			primoGrabbato.GetComponent<Rigidbody>().isKinematic = false;
+		if(Input.GetKeyUp(KeyCode.Mouse0) && primoGrabbato != null && grabbing){
+
+			//Enable gravity and Rotation
+			primoGrabbato.GetComponent<Rigidbody>().useGravity = true;
+			primoGrabbato.GetComponent<Rigidbody>().freezeRotation = false; 
+
+			//Color ungrabbed
 			primoGrabbato.GetComponent<Renderer>().material.color = Color.white;
+
+			//Change parent of Child
 			primoGrabbato.transform.parent = grabbedOriginalParent.transform;
             primoGrabbato.transform.localScale = initialScale;
             grabbing = false;
+			primoGrabbato = null;
         }
 
 		if (Input.GetKeyDown(KeyCode.Mouse1) && primoGrabbato != null && grabbing && primoGrabbato.GetComponent<IUsable>() != null) {
             (primoGrabbato.GetComponent<IUsable>()).OnUse();
         }
 
-      // 
 	}
 }
