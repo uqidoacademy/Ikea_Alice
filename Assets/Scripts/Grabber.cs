@@ -42,7 +42,6 @@ public class Grabber : MonoBehaviour {
 			(primoGrabbato.GetComponent<IGrabable>()).OnGrab(this);
 			primoGrabbato.GetComponent<Renderer>().material.color = Color.green;
 			grabbing = true;
-
 		} 
 
 		if(Input.GetKeyUp(KeyCode.Mouse0) && primoGrabbato != null && grabbing ){
@@ -51,9 +50,10 @@ public class Grabber : MonoBehaviour {
 			grabbing = false;
 
         }
+        IUsable usable = primoGrabbato.GetComponent<IUsable>();
 
-		if (Input.GetKeyDown(KeyCode.Mouse1) && primoGrabbato != null && grabbing && primoGrabbato.GetComponent<IUsable>() != null) {
-            animate(HandAnimationType.eat, () =>
+        if (Input.GetKeyDown(KeyCode.Mouse1) && primoGrabbato != null && grabbing && usable != null) {
+            animate(usable.useAnimationType(), () =>
             {
                 (primoGrabbato.GetComponent<IUsable>()).OnUse();
             });
@@ -78,11 +78,12 @@ public class Grabber : MonoBehaviour {
 
     [SerializeField] Vector3 AnimationRotationScale = new Vector3(1, 1, 1);
     [SerializeField] Vector3 AnimationMoveScale = new Vector3(1, 1, 1);
-    
-    enum HandAnimationType
+
+    public enum HandAnimationType
     {
         eat,
-        useKey
+        useKey,
+        none
     };
 
     private void animate(HandAnimationType animationType, Action callback)
@@ -90,6 +91,7 @@ public class Grabber : MonoBehaviour {
         switch (animationType)
         {
             case HandAnimationType.eat: animateEat(callback); break;
+            default: callback(); break;
         }
     }
 
@@ -122,3 +124,4 @@ public class Grabber : MonoBehaviour {
     #endregion
 
 }
+

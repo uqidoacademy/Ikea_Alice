@@ -10,6 +10,11 @@ public class Minimizer : Interactionable, IUsable, IGrabable {
         return true;
     }
 
+    public Grabber.HandAnimationType useAnimationType()
+    {
+        return Grabber.HandAnimationType.eat;
+    }
+
     public bool CanGrab()
     {
         return true;

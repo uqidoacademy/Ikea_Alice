@@ -9,6 +9,11 @@ public class UnlockKey : Interactionable, IGrabable, IUsable {
         return true;
     }
 
+    public Grabber.HandAnimationType useAnimationType()
+    {
+        return Grabber.HandAnimationType.useKey;
+    }
+
     public bool CanGrab()
     {
         return true;
