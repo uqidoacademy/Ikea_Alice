@@ -13,6 +13,8 @@ public class MainManager : MonoBehaviour
     public Animation fadeOutAnimation;
     private CanvasGroup endScreenGroup;
 
+    public Grabber MainGrabber;
+
     #region Singleton
 
     private static MainManager _instance;
