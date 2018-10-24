@@ -6,11 +6,12 @@ using UnityEngine;
 
 public class Grabber : MonoBehaviour {
 
-	public GameObject primoGrabbato;
+	private GameObject primoGrabbato;
 	private bool grabbing = false;
     private Transform grabbedOriginalParent = null;
     private Transform grabbedChild = null;
     private Vector3 initialScale;
+    public GameObject oggettoSelezionato;
 
 	public GameObject secondHand;
 
@@ -23,7 +24,7 @@ public class Grabber : MonoBehaviour {
 
     void OnTriggerEnter (Collider oggettoForseGrabbabile) {
 		IGrabable tempGrab = oggettoForseGrabbabile.gameObject.GetComponent<IGrabable>();
-		if(primoGrabbato == null && tempGrab != null && tempGrab.CanGrab()){          
+		if(primoGrabbato == null && tempGrab != null && tempGrab.CanGrab()){
             primoGrabbato = oggettoForseGrabbabile.gameObject;
             initialScale = primoGrabbato.transform.localScale;
             oggettoForseGrabbabile.gameObject.GetComponent<Renderer>().material.color = Color.blue;
@@ -41,7 +42,8 @@ public class Grabber : MonoBehaviour {
 
 			(primoGrabbato.GetComponent<IGrabable>()).OnGrab(this);
 			primoGrabbato.GetComponent<Renderer>().material.color = Color.green;
-			grabbing = true;
+            oggettoSelezionato = primoGrabbato.gameObject;
+            grabbing = true;
 		} 
 
 		if(Input.GetKeyUp(KeyCode.Mouse0) && primoGrabbato != null && grabbing ){

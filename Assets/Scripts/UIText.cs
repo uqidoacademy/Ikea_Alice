@@ -27,8 +27,8 @@ public class UIText : MonoBehaviour {
 
         statusText.text = "Actual status\n" + "     " + playerStateMachine.CurrentState;
 
-        if (grabber.primoGrabbato != null)
-            actualDoingText.text = "Hai raccolto\n" + "   "+ grabber.primoGrabbato.transform.parent.name; 
+        if (grabber.oggettoSelezionato != null)
+            actualDoingText.text = "Hai raccolto\n" + "   " + grabber.oggettoSelezionato.name; 
 
         tipText.text = "Ti consiglio:\n";
 
