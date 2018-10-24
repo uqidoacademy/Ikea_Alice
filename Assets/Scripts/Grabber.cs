@@ -4,16 +4,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Grabber : MonoBehaviour {
+public class Grabber : MonoBehaviour
+{
 
-	private GameObject primoGrabbato;
-	private bool grabbing = false;
+    private GameObject primoGrabbato;
+    private bool grabbing = false;
     private Transform grabbedOriginalParent = null;
     private Transform grabbedChild = null;
     private Vector3 initialScale;
     public GameObject oggettoSelezionato;
 
-	public GameObject secondHand;
+    public GameObject secondHand;
 
     private void Start()
     {
@@ -25,43 +26,51 @@ public class Grabber : MonoBehaviour {
         InitialSecondHandRotation = secondHand.transform.localRotation.eulerAngles;
     }
 
-    void OnTriggerEnter (Collider oggettoForseGrabbabile) {
-		IGrabable tempGrab = oggettoForseGrabbabile.gameObject.GetComponent<IGrabable>();
-		if(primoGrabbato == null && tempGrab != null && tempGrab.CanGrab()){
+    void OnTriggerEnter(Collider oggettoForseGrabbabile)
+    {
+        IGrabable tempGrab = oggettoForseGrabbabile.gameObject.GetComponent<IGrabable>();
+        if (primoGrabbato == null && tempGrab != null && tempGrab.CanGrab())
+        {
             primoGrabbato = oggettoForseGrabbabile.gameObject;
             initialScale = primoGrabbato.transform.localScale;
             oggettoForseGrabbabile.gameObject.GetComponent<Renderer>().material.color = Color.blue;
-		}
-	}
+        }
+    }
 
-	void OnTriggerExit (Collider oggettoGrabbabile) {
-		if(oggettoGrabbabile.gameObject == primoGrabbato && !grabbing){
-			LoseObject();
-		}
-	}
-	void Update () {
+    void OnTriggerExit(Collider oggettoGrabbabile)
+    {
+        if (oggettoGrabbabile.gameObject == primoGrabbato && !grabbing)
+        {
+            LoseObject();
+        }
+    }
+    void Update()
+    {
 
-		if(Input.GetKeyDown(KeyCode.Mouse0) && !grabbing && primoGrabbato != null){
+        if (Input.GetKeyDown(KeyCode.Mouse0) && !grabbing && primoGrabbato != null)
+        {
 
-			(primoGrabbato.GetComponent<IGrabable>()).OnGrab(this);
-			primoGrabbato.GetComponent<Renderer>().material.color = Color.green;
+            (primoGrabbato.GetComponent<IGrabable>()).OnGrab(this);
+            primoGrabbato.GetComponent<Renderer>().material.color = Color.green;
             oggettoSelezionato = primoGrabbato.gameObject;
             grabbing = true;
-		} 
+        }
 
-		if(Input.GetKeyUp(KeyCode.Mouse0) && primoGrabbato != null && grabbing ){
+        if (Input.GetKeyUp(KeyCode.Mouse0) && primoGrabbato != null && grabbing)
+        {
 
-			LoseObject();
-			grabbing = false;
+            LoseObject();
+            grabbing = false;
 
         }
 
-        if (Input.GetKeyDown(KeyCode.Mouse1) && primoGrabbato != null && grabbing && primoGrabbato.GetComponent<IUsable>() != null) {
+        if (Input.GetKeyDown(KeyCode.Mouse1) && primoGrabbato != null && grabbing && primoGrabbato.GetComponent<IUsable>() != null)
+        {
             animate(primoGrabbato.GetComponent<IUsable>().useAnimationType(), () =>
             {
                 (primoGrabbato.GetComponent<IUsable>()).OnUse();
             });
-            
+
         }
 
         if (Input.GetKeyDown(KeyCode.T))
@@ -69,13 +78,14 @@ public class Grabber : MonoBehaviour {
             animateUseKey(() => { });
         }
 
-	}
+    }
 
-	void LoseObject(){
-			(primoGrabbato.GetComponent<IGrabable>()).OnUngrab();
-			primoGrabbato.GetComponent<Renderer>().material.color = Color.white;
-			primoGrabbato = null;
-	}
+    void LoseObject()
+    {
+        (primoGrabbato.GetComponent<IGrabable>()).OnUngrab();
+        primoGrabbato.GetComponent<Renderer>().material.color = Color.white;
+        primoGrabbato = null;
+    }
 
     #region Animations
 
@@ -134,7 +144,7 @@ public class Grabber : MonoBehaviour {
         Sequence animationSequence = DOTween.Sequence();
         animationSequence.Append(secondHand.transform.DOScale(new Vector3(AnimationScaleToUnlockKey, AnimationScaleToUnlockKey, -AnimationScaleToUnlockKey), AnimationTime));
         animationSequence.Join(secondHand.transform.DOLocalRotate(new Vector3(18 * AnimationRotationScaleUnlockKey.x, -272 * AnimationRotationScaleUnlockKey.y, -189 * AnimationRotationScaleUnlockKey.z), AnimationTime));
-        animationSequence.Join(secondHand.transform.DOLocalMove(new Vector3(-0.15f * AnimationMoveScaleUnlockKey.x, -0.17f * AnimationMoveScaleUnlockKey.y, 0.90f * AnimationMoveScaleUnlockKey.z), AnimationTime));
+        animationSequence.Join(secondHand.transform.DOLocalMove(new Vector3(-0.15f * AnimationMoveScaleUnlockKey.x, -0.17f * AnimationMoveScaleUnlockKey.y, 1.25f * AnimationMoveScaleUnlockKey.z), AnimationTime));
         animationSequence.Play();
 
         animationSequence.OnComplete(() =>
