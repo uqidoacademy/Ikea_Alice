@@ -31,12 +31,16 @@ public class UnlockKey : Interactionable, IGrabable, IUsable {
         this.AnimateSequence(ioTiGrabbo.secondHand.transform);
         this.SetMyParent(ioTiGrabbo.secondHand.transform);
         this.FreezeAllConstraints();
+        if(EventManager.OnKeyGrabbed != null) EventManager.OnKeyGrabbed(true);
     }
 
     public void OnUse()
     {
-        if (EventManager.PreOpenDoor != null)
-            EventManager.PreOpenDoor();
+        MainManager.Instance.MainGrabber.animate(Grabber.HandAnimationType.useKey, () => {
+            if (EventManager.PreOpenDoor != null)
+                EventManager.PreOpenDoor();
+        });
+        
     }
 
     public void OnUngrab(){
