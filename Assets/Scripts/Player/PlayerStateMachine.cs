@@ -5,10 +5,7 @@ using UnityStandardAssets.Characters.FirstPerson;
 
 public class PlayerStateMachine: MonoBehaviour
 {
-    public Transform TargetTranform;
-
     public float AnimationTimer = 2.0f;
-
     // Scale points
     public float ScaleBig ;
     public float ScaledMedium ;
@@ -70,7 +67,7 @@ public class PlayerStateMachine: MonoBehaviour
     private void ScalePlayerBy(float newScale)
     {
         movementSequance = DOTween.Sequence();
-        movementSequance.Append(TargetTranform.DOScale(newScale, AnimationTimer));
+        movementSequance.Append(transform.GetChild(0).DOScale(newScale, AnimationTimer));
         movementSequance.OnComplete(()=> {EnableFPS();});
        
     }
