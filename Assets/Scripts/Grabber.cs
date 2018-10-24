@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Grabber : MonoBehaviour {
 
-	private GameObject primoGrabbato;
+	public GameObject primoGrabbato;
 	private bool grabbing = false;
     private Transform grabbedOriginalParent = null;
     private Transform grabbedChild = null;
