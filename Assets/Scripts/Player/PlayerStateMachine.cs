@@ -70,6 +70,11 @@ public class PlayerStateMachine: MonoBehaviour
         movementSequance = DOTween.Sequence();
         movementSequance.Append(transform.GetChild(0).DOScale(newScale, AnimationTimer));
         movementSequance.OnComplete(()=> {EnableFPS();});
+        if(newScale == ScaleBig) {
+            GetComponent<FirstPersonController>().WalkSpped = 2.5f;
+        } else if(newScale == ScaledMedium || newScale == ScaledSmall) {
+            GetComponent<FirstPersonController>().WalkSpped = 4;
+        }
        
     }
 
