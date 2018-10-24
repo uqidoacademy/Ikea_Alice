@@ -17,10 +17,10 @@ public class Grabber : MonoBehaviour {
 
     private void Start()
     {
-        InitialHandScale = transform.localScale.x;
+        InitialHandScale = transform.localScale;
         InitialHandPosition = transform.localPosition;
         InitialHandRotation = transform.localRotation.eulerAngles;
-        InitialSecondHandScale = secondHand.transform.localScale.x;
+        InitialSecondHandScale = secondHand.transform.localScale;
         InitialSecondHandPosition = secondHand.transform.localPosition;
         InitialSecondHandRotation = secondHand.transform.localRotation.eulerAngles;
     }
@@ -79,10 +79,10 @@ public class Grabber : MonoBehaviour {
 
     #region Animations
 
-    float InitialHandScale;
+    private Vector3 InitialHandScale;
     private Vector3 InitialHandPosition;
     private Vector3 InitialHandRotation;
-    float InitialSecondHandScale;
+    private Vector3 InitialSecondHandScale;
     private Vector3 InitialSecondHandPosition;
     private Vector3 InitialSecondHandRotation;
     [SerializeField] const float AnimationTime = 1.0f;
@@ -106,6 +106,7 @@ public class Grabber : MonoBehaviour {
         switch (animationType)
         {
             case HandAnimationType.eat: animateEat(callback); break;
+            case HandAnimationType.useKey: animateUseKey(callback); break;
             default: callback(); break;
         }
     }
@@ -131,7 +132,7 @@ public class Grabber : MonoBehaviour {
     private void animateUseKey(Action callback)
     {
         Sequence animationSequence = DOTween.Sequence();
-        animationSequence.Append(secondHand.transform.DOScale(AnimationScaleToUnlockKey, AnimationTime));
+        animationSequence.Append(secondHand.transform.DOScale(new Vector3(AnimationScaleToUnlockKey, AnimationScaleToUnlockKey, -AnimationScaleToUnlockKey), AnimationTime));
         animationSequence.Join(secondHand.transform.DOLocalRotate(new Vector3(18 * AnimationRotationScaleUnlockKey.x, -272 * AnimationRotationScaleUnlockKey.y, -189 * AnimationRotationScaleUnlockKey.z), AnimationTime));
         animationSequence.Join(secondHand.transform.DOLocalMove(new Vector3(-0.15f * AnimationMoveScaleUnlockKey.x, -0.17f * AnimationMoveScaleUnlockKey.y, 0.90f * AnimationMoveScaleUnlockKey.z), AnimationTime));
         animationSequence.Play();
@@ -139,7 +140,7 @@ public class Grabber : MonoBehaviour {
         animationSequence.OnComplete(() =>
         {
             callback();
-            //animateToOriginalPositionSecondHand();
+            animateToOriginalPositionSecondHand();
         });
     }
     private void animateToOriginalPosition()
