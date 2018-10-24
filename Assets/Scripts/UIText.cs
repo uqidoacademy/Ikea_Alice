@@ -11,7 +11,7 @@ public class UIText : MonoBehaviour {
 
     private PlayerStateMachine playerStateMachine;
     private Grabber grabber;
-   // TODO [SerializeField] TextMesh tipText;
+   
    
 
     // Use this for initialization
@@ -30,8 +30,26 @@ public class UIText : MonoBehaviour {
         if (grabber.oggettoSelezionato != null)
             actualDoingText.text = "Hai raccolto\n" + "   " + grabber.oggettoSelezionato.name; 
 
-        tipText.text = "Ti consiglio:\n";
-
+        GiveTips();
 
 	}
+
+    void GiveTips()
+    {
+        switch (playerStateMachine.CurrentState)
+        {
+            case PlayerState.small:
+                tipText.text = " SUGGERIMENTO:\nPersone piccole \npassano attraverso \nporte piccole...";
+                break;
+
+            case PlayerState.medium:
+                tipText.text = " SUGGERIMENTO:\nPersone alte\nraggiungono\nposti alti...";
+
+                break;
+
+            case PlayerState.big:
+                tipText.text = " SUGGERIMENTO:\nGuardarti intorno\nè la chiave\ndella storia...";
+                break;
+        }
+    }
 }
