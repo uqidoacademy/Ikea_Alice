@@ -22,18 +22,17 @@ public class MagicDoor : Interactionable, IUsable {
 
     public void OnUse()
     {
+        EventManager.PreOpenDoor += OpenDoor;
         Debug.Log("Open door");
     }
 
     // Use this for initialization
     void Start () {
-
-        EventManager.PreOpenDoor += OpenDoor;
-
 	}
 
     void OpenDoor()
     {
+        if(hingeDoor != null)
         hingeDoor.transform.DORotate(new Vector3(0, angoloAperturaPorta, 0), tempoAperturaPorta);
         // after rotation has been done trigger event
         if(EventManager.PostOpenDoor != null) EventManager.PostOpenDoor();

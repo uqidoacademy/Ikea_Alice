@@ -1,10 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using DG.Tweening;
 
 public class Interactionable : MonoBehaviour {
-
 
     #region Properties
     private Vector3 initialPosition;
@@ -93,30 +92,9 @@ public class Interactionable : MonoBehaviour {
             Debug.Log(MainManager.Instance.HandTag);
             if (collision.gameObject.CompareTag(MainManager.Instance.HandTag ))
             {
-                grabable.OnGrab();
+                grabable. OnGrab(Grabber ioTiGrabbo);
             }
         } */
-    }
-
-
-    
-
-
-
-    public void OnUngrab() 
-    {
-        
-    }
-
-    public void OnGrab()
-    {
-        // collega alla mano
-
-        // TODO: Handle Hand Object
-
-        //GameObject hand = GameObject.FindGameObjectWithTag(MainManager.Instance.HandTag) as GameObject;
-        //this.transform.parent = hand.transform;
-        //this.objectCanMove(false);
     }
 
     protected void objectCanMove(bool active)
@@ -132,11 +110,35 @@ public class Interactionable : MonoBehaviour {
                 return true;
         return false;
     }
-
-  
-	// Update is called once per frame
-	void Update () {
-		
-	}
     
+}
+
+public static class InteractionableExt
+{
+    public static void RemoveGravityAndRotation(this Interactionable _grabbed)
+    {
+        _grabbed.GetComponent<Rigidbody>().useGravity = false;
+		_grabbed.GetComponent<Rigidbody>().freezeRotation = true;
+    }
+
+    public static void EnableGravityAndRotation(this Interactionable _grabbed)
+    {
+        _grabbed.GetComponent<Rigidbody>().useGravity = true;
+		_grabbed.GetComponent<Rigidbody>().freezeRotation = false;
+    }
+
+    public static void FreezeAllConstraints(this Interactionable _grabbed){
+        _grabbed.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
+    }
+
+    public static Transform SetMyParent(this Interactionable _grabbed,Transform padre){
+        Transform vecchioPadre = _grabbed.transform.parent;
+        _grabbed.transform.parent = padre;
+        return vecchioPadre;
+    }
+
+    public static void AnimateSequence(this Interactionable _grabbed,Transform to)
+    {
+        _grabbed.transform.DOLocalMove(to.localPosition, 2f);
+    }
 }

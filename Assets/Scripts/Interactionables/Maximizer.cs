@@ -3,36 +3,34 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Maximizer : Interactionable, IUsable, IGrabable {
-    
 
-    // Use this for initialization
-    void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
-
-    public bool CanBeUsed()
-    {
+    private Transform genitore;
+    public bool CanBeUsed () {
         return true;
     }
 
-    public bool CanGrab()
-    {
+    public bool CanGrab () {
         return true;
     }
 
-    public string[] GetCollisionTags()
-    {
+    public string[] GetCollisionTags () {
         return new string[] { };
     }
 
-    public void OnUse()
-    {
+    public void OnUse () {
         if (EventManager.PreBecomeBigger != null)
-            EventManager.PreBecomeBigger();
+            EventManager.PreBecomeBigger ();
     }
+
+    public void OnGrab (Grabber ioTiGrabbo) {
+        genitore = this.transform.parent;
+        this.RemoveGravityAndRotation ();
+        this.SetMyParent (ioTiGrabbo.transform);
+    }
+
+    public void OnUngrab () {
+        this.EnableGravityAndRotation ();
+        this.SetMyParent (genitore);
+    }
+
 }
