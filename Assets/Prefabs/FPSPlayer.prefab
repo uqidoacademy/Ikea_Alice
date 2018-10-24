@@ -195,7 +195,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1338921186832580}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.87974185, y: 1.9146961, z: -1.2335815}
+  m_LocalPosition: {x: -0.87974185, y: 1.9146961, z: -1.29}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4689477629678324}
@@ -572,12 +572,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerCamera: {fileID: 20124369209601668}
+  timeToMoveHands: 1
   LeftHand: {fileID: 1751495869778568}
   RightHand: {fileID: 1138705481446936}
   AnimationTimer: 2
   ScaledBig: 2
   ScaledMedium: 1
   ScaledSmall: 0.3
+  DistanceHandsBig: 1.1
+  DistanceHandsMedium: 1.1
+  DistanceHandsSmall: 0.8
 --- !u!124 &124009732348747748
 Behaviour:
   m_ObjectHideFlags: 1

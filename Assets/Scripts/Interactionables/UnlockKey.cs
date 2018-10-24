@@ -31,6 +31,7 @@ public class UnlockKey : Interactionable, IGrabable, IUsable {
         this.AnimateSequence(ioTiGrabbo.secondHand.transform);
         this.SetMyParent(ioTiGrabbo.secondHand.transform);
         this.FreezeAllConstraints();
+        if(EventManager.OnKeyGrabbed != null) EventManager.OnKeyGrabbed(true);
     }
 
     public void OnUse()
