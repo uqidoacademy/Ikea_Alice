@@ -6,7 +6,7 @@ public class TripManager : MonoBehaviour {
 
     #region State
 
-    private PlayerState   keyRequiredSize = PlayerState.big, // always big for now
+    private PlayerState   keyRequiredSize,
                           playerSize;
     private bool isKeyGrabbed = false;
 
@@ -72,19 +72,15 @@ public class TripManager : MonoBehaviour {
                     }
                 } break;
             case PlayerState.medium: {
-                    switch(keyRequiredSize)
-                    {
-                        case PlayerState.big: MakeBiscuitShine(); break; // bisogna diventare grandi per prendere la chiave
-                        case PlayerState.medium: {
-                                if(isKeyGrabbed) {
-                                    // si può diventare piccoli ora!
-                                    MakePotionShine();
-                                } else {
-                                    // si può prendere la chiave
-                                    MakeKeyShine();
-                                }
-                            } break;
-                        case PlayerState.small: MakePotionShine(); break; // bisogna diventare piccoli per prendere la chiave
+                    if(isKeyGrabbed) {
+                        MakePotionShine(); // bisogna diventare piccoli per prendere la chiave
+                    } else {
+                        switch (keyRequiredSize)
+                        {
+                            case PlayerState.big: MakeBiscuitShine(); break; // bisogna diventare grandi per prendere la chiave
+                            case PlayerState.medium: MakeKeyShine(); break; // si può prendere la chiave
+                            case PlayerState.small: MakePotionShine(); break; // bisogna diventare piccoli per prendere la chiave
+                        }
                     }
                 } break;
             case PlayerState.small: {
@@ -105,9 +101,25 @@ public class TripManager : MonoBehaviour {
     }
     
     void Start () {
+        // registrazione agli eventi
         EventManager.OnKeyNeedState += UpdateKeyPosition;
         EventManager.PostBecomeBigger += delegate () { NextSize(true); };
         EventManager.PostBecomeSmaller += delegate () { NextSize(false); };
         EventManager.OnKeyGrabbed += KeyGrabbed;
+
+        // setup guide
+        keyRequiredSize = PlayerState.big;
+        playerSize = PlayerState.medium;
+
+        TryMoveOn();
 	}
+
+    private void OnDestroy()
+    {
+        // rimozione registrazione
+        EventManager.OnKeyNeedState -= UpdateKeyPosition;
+        EventManager.PostBecomeBigger -= delegate () { NextSize(true); };
+        EventManager.PostBecomeSmaller -= delegate () { NextSize(false); };
+        EventManager.OnKeyGrabbed -= KeyGrabbed;
+    }
 }
