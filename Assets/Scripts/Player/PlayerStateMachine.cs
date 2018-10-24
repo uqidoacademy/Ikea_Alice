@@ -31,7 +31,7 @@ public class PlayerStateMachine: MonoBehaviour
             {
                 PlayerState oldState = _currentState;
                 _currentState = value;
-                StateChanged();
+                StateChanged(oldState);
             }
             if (_currentState == value)
             {
@@ -44,21 +44,21 @@ public class PlayerStateMachine: MonoBehaviour
     /// <summary>
     /// Chiamata quando cambio stato
     /// </summary>
-    private void StateChanged()
+    private void StateChanged(PlayerState oldState)
     {
         
         switch (CurrentState)
         {
             case PlayerState.small:
                 DisableFPS();
-                ScalePlayerBy(ScaledSmall);
+                ScalePlayerBy(ScaledSmall, oldState);
                 SetWalkSpeed(ScaledSmall);
                 SetFieldOfView(ScaledSmall);
                 break;
 
             case PlayerState.medium:
                 DisableFPS();
-                ScalePlayerBy(ScaledMedium);
+                ScalePlayerBy(ScaledMedium, oldState);
                 SetWalkSpeed(ScaledMedium);
                 SetFieldOfView(ScaledMedium);
                 
@@ -66,7 +66,7 @@ public class PlayerStateMachine: MonoBehaviour
 
             case PlayerState.big:
                 DisableFPS();
-                ScalePlayerBy(ScaledBig);
+                ScalePlayerBy(ScaledBig, oldState);
                 SetWalkSpeed(ScaledBig);
                 SetFieldOfView(ScaledBig);
                 break;
@@ -74,11 +74,15 @@ public class PlayerStateMachine: MonoBehaviour
     }
 
     #region OnScale
-    private void ScalePlayerBy(float newScale)
+    private void ScalePlayerBy(float newScale, PlayerState oldState)
     {
         movementSequance = DOTween.Sequence();
         movementSequance.Append(transform.GetChild(0).DOScale(newScale, AnimationTimer));
-        movementSequance.OnComplete(()=> {EnableFPS();});
+        movementSequance.OnComplete(()=> {
+            EnableFPS();
+            if (CurrentState > oldState) EventManager.PostBecomeBigger();
+            else if(CurrentState < oldState) EventManager.PostBecomeSmaller();
+        });
               
     }
 
