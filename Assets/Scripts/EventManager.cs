@@ -47,4 +47,13 @@ public class EventManager
 
     public static ObjectInteraction PreOpenDoor;
     public static ObjectInteraction PostOpenDoor;
+
+    #region Key position events
+    // questi eventi vengono chiamati quando la chiave cambia posizione e per essere raggiungibile il player deve trovarsi in un determinato stato
+
+    public delegate void KeyMoved(PlayerState size);
+    public delegate void KeyGrabbed(bool isGrabbed);
+    public static KeyMoved OnKeyNeedState;
+    public static KeyGrabbed OnKeyGrabbed;
+    #endregion
 }
