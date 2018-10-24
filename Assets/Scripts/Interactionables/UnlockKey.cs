@@ -9,6 +9,11 @@ public class UnlockKey : Interactionable, IGrabable, IUsable {
         return true;
     }
 
+    public Grabber.HandAnimationType useAnimationType()
+    {
+        return Grabber.HandAnimationType.useKey;
+    }
+
     public bool CanGrab()
     {
         return true;
@@ -30,8 +35,11 @@ public class UnlockKey : Interactionable, IGrabable, IUsable {
 
     public void OnUse()
     {
-        if (EventManager.PreOpenDoor != null)
-            EventManager.PreOpenDoor();
+        MainManager.Instance.MainGrabber.animate(Grabber.HandAnimationType.useKey, () => {
+            if (EventManager.PreOpenDoor != null)
+                EventManager.PreOpenDoor();
+        });
+        
     }
 
     public void OnUngrab(){
