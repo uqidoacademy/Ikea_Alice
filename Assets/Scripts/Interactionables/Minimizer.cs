@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Minimizer : Interactionable, IUsable, IGrabable {
 
+    private Transform genitore;
     public bool CanBeUsed()
     {
         return true;
@@ -19,24 +20,20 @@ public class Minimizer : Interactionable, IUsable, IGrabable {
         return new string[] {  };
     }
 
-    public void OnGrab()
-    {
-        // collega alla mano
-    }
-
     public void OnUse()
     {
         if (EventManager.PreBecomeSmaller != null)
             EventManager.PreBecomeSmaller();
     }
 
-    // Use this for initialization
-    void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    public void OnGrab (Grabber ioTiGrabbo) {
+        genitore = this.transform.parent;
+        this.RemoveGravityAndRotation ();
+        this.SetMyParent (ioTiGrabbo.transform);
+    }
+
+    public void OnUngrab () {
+        this.EnableGravityAndRotation ();
+        this.SetMyParent (genitore);
+    }
 }

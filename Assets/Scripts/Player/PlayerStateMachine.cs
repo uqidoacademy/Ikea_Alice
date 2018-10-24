@@ -6,12 +6,13 @@ using UnityEngine.SceneManagement;
 
 public class PlayerStateMachine: MonoBehaviour
 {
-    public Transform TargetTranform;
+    public Camera playerCamera;
 
+    public GameObject LeftHand;
+    public GameObject RightHand;
     public float AnimationTimer = 2.0f;
-
     // Scale points
-    public float ScaleBig ;
+    public float ScaledBig ;
     public float ScaledMedium ;
     public float ScaledSmall ;
 
@@ -51,18 +52,23 @@ public class PlayerStateMachine: MonoBehaviour
             case PlayerState.small:
                 DisableFPS();
                 ScalePlayerBy(ScaledSmall);
-                
+                SetWalkSpeed(ScaledSmall);
+                SetFieldOfView(ScaledSmall);
                 break;
 
             case PlayerState.medium:
                 DisableFPS();
                 ScalePlayerBy(ScaledMedium);
+                SetWalkSpeed(ScaledMedium);
+                SetFieldOfView(ScaledMedium);
                 
                 break;
 
             case PlayerState.big:
                 DisableFPS();
-                ScalePlayerBy(ScaleBig);
+                ScalePlayerBy(ScaledBig);
+                SetWalkSpeed(ScaledBig);
+                SetFieldOfView(ScaledBig);
                 break;
         }
     }
@@ -71,9 +77,27 @@ public class PlayerStateMachine: MonoBehaviour
     private void ScalePlayerBy(float newScale)
     {
         movementSequance = DOTween.Sequence();
-        movementSequance.Append(TargetTranform.DOScale(newScale, AnimationTimer));
+        movementSequance.Append(transform.GetChild(0).DOScale(newScale, AnimationTimer));
         movementSequance.OnComplete(()=> {EnableFPS();});
-       
+              
+    }
+
+    private void SetWalkSpeed(float newScale) {
+        if(newScale == ScaledBig || newScale == ScaledSmall) {
+            GetComponent<FirstPersonController>().WalkSpped = 2.5f;
+        } else if(newScale == ScaledMedium) {
+            GetComponent<FirstPersonController>().WalkSpped = 4;
+        }
+    }
+
+    private void SetFieldOfView(float newScale) {
+        if(newScale == ScaledSmall) {
+            playerCamera.DOFieldOfView(80, AnimationTimer);
+        } else if(newScale == ScaledBig) {
+            playerCamera.DOFieldOfView(40, AnimationTimer);
+        } else {
+             playerCamera.DOFieldOfView(60, AnimationTimer);
+        }
     }
 
     private void DisableFPS()
