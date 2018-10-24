@@ -86,7 +86,7 @@ public class Grabber : MonoBehaviour {
         none
     };
 
-    private void animate(HandAnimationType animationType, Action callback)
+    public void animate(HandAnimationType animationType, Action callback)
     {
         switch (animationType)
         {
