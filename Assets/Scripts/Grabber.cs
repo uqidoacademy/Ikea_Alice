@@ -1,4 +1,6 @@
-﻿using System.Collections;
+﻿using DG.Tweening;
+using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -12,7 +14,14 @@ public class Grabber : MonoBehaviour {
 
 	public GameObject secondHand;
 
-	void OnTriggerEnter (Collider oggettoForseGrabbabile) {
+    private void Start()
+    {
+        InitialHandScale = transform.localScale.x;
+        InitialHandPosition = transform.localPosition;
+        InitialHandRotation = transform.localRotation.eulerAngles;
+    }
+
+    void OnTriggerEnter (Collider oggettoForseGrabbabile) {
 		IGrabable tempGrab = oggettoForseGrabbabile.gameObject.GetComponent<IGrabable>();
 		if(primoGrabbato == null && tempGrab != null && tempGrab.CanGrab()){          
             primoGrabbato = oggettoForseGrabbabile.gameObject;
@@ -36,7 +45,7 @@ public class Grabber : MonoBehaviour {
 
 		} 
 
-		if(Input.GetKeyUp(KeyCode.Mouse0) && primoGrabbato != null && grabbing){
+		if(Input.GetKeyUp(KeyCode.Mouse0) && primoGrabbato != null && grabbing ){
 
 			LoseObject();
 			grabbing = false;
@@ -44,7 +53,11 @@ public class Grabber : MonoBehaviour {
         }
 
 		if (Input.GetKeyDown(KeyCode.Mouse1) && primoGrabbato != null && grabbing && primoGrabbato.GetComponent<IUsable>() != null) {
-            (primoGrabbato.GetComponent<IUsable>()).OnUse();
+            animateEat(() =>
+            {
+                (primoGrabbato.GetComponent<IUsable>()).OnUse();
+            });
+            
         }
 
 	}
@@ -54,4 +67,45 @@ public class Grabber : MonoBehaviour {
 			primoGrabbato.GetComponent<Renderer>().material.color = Color.white;
 			primoGrabbato = null;
 	}
+
+    #region Animations
+
+    float InitialHandScale;
+    private Vector3 InitialHandPosition;
+    private Vector3 InitialHandRotation;
+    [SerializeField] const float AnimationTime = 1.0f;
+    [SerializeField] float AnimationScaleTo = 0.005f;
+
+    [SerializeField] Vector3 AnimationRotationScale = new Vector3(1, 1, 1);
+    [SerializeField] Vector3 AnimationMoveScale = new Vector3(1, 1, 1);
+    
+
+
+    private void animateEat(Action callback)
+    {
+        Sequence animationSequence = DOTween.Sequence();
+        animationSequence.Append(transform.DOScale(AnimationScaleTo, AnimationTime));
+        animationSequence.Join(transform.DOLocalRotate(new Vector3(-25 * AnimationRotationScale.x, -320 * AnimationRotationScale.y, -200 * AnimationRotationScale.z), AnimationTime));
+        animationSequence.Join(transform.DOLocalMove(new Vector3(0.20f * AnimationMoveScale.x, -0.14f * AnimationMoveScale.y, 0.68f * AnimationMoveScale.z), AnimationTime));
+        animationSequence.Play();
+
+        animationSequence.OnComplete(() =>
+        {
+            if (grabbing)
+                callback();
+
+            animateToOriginalPosition();
+        });
+    }
+    private void animateToOriginalPosition()
+    {
+        Sequence animationSequence = DOTween.Sequence();
+        animationSequence.Append(transform.DOScale(InitialHandScale, AnimationTime));
+        animationSequence.Join(transform.DOLocalRotate(InitialHandRotation, AnimationTime));
+        animationSequence.Join(transform.DOLocalMove(InitialHandPosition, AnimationTime));
+        animationSequence.Play();
+    }
+
+    #endregion
+
 }
