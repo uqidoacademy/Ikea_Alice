@@ -60,6 +60,7 @@ public class PlayerStateMachine: MonoBehaviour
                 DisableFPS();
                 ScalePlayerBy(ScaledMedium);
                 SetWalkSpeed(ScaledMedium);
+                SetFieldOfView(ScaledMedium);
                 
                 break;
 
@@ -67,6 +68,7 @@ public class PlayerStateMachine: MonoBehaviour
                 DisableFPS();
                 ScalePlayerBy(ScaledBig);
                 SetWalkSpeed(ScaledBig);
+                SetFieldOfView(ScaledBig);
                 break;
         }
     }
@@ -81,9 +83,9 @@ public class PlayerStateMachine: MonoBehaviour
     }
 
     private void SetWalkSpeed(float newScale) {
-        if(newScale == ScaledBig) {
+        if(newScale == ScaledBig || newScale == ScaledSmall) {
             GetComponent<FirstPersonController>().WalkSpped = 2.5f;
-        } else if(newScale == ScaledMedium || newScale == ScaledSmall) {
+        } else if(newScale == ScaledMedium) {
             GetComponent<FirstPersonController>().WalkSpped = 4;
         }
     }
@@ -91,10 +93,10 @@ public class PlayerStateMachine: MonoBehaviour
     private void SetFieldOfView(float newScale) {
         if(newScale == ScaledSmall) {
             playerCamera.DOFieldOfView(80, AnimationTimer);
-            LeftHand.transform.DOLocalMove(new Vector3(-0.3f, -0.3f, 0.8f), AnimationTimer);
-            RightHand.transform.DOLocalMove(new Vector3(0.3f, -0.3f, 0.8f), AnimationTimer);
         } else if(newScale == ScaledBig) {
             playerCamera.DOFieldOfView(40, AnimationTimer);
+        } else {
+             playerCamera.DOFieldOfView(60, AnimationTimer);
         }
     }
 
