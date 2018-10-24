@@ -34,7 +34,9 @@ public class MagicDoor : Interactionable, IUsable {
 
     void OpenDoor()
     {
-        hingeDoor.transform.DORotate(new Vector3(0, angoloAperturaPorta, 0), tempoAperturaPorta); 
+        hingeDoor.transform.DORotate(new Vector3(0, angoloAperturaPorta, 0), tempoAperturaPorta);
+        // after rotation has been done trigger event
+        if(EventManager.PostOpenDoor != null) EventManager.PostOpenDoor();
     }
 	
 	// Update is called once per frame
