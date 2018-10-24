@@ -2,6 +2,7 @@
 using System;
 using UnityEngine;
 using UnityStandardAssets.Characters.FirstPerson;
+using UnityEngine.SceneManagement;
 
 public class PlayerStateMachine: MonoBehaviour
 {
@@ -134,6 +135,11 @@ public class PlayerStateMachine: MonoBehaviour
         {
             this.OnPlayerSmall();
         }
+
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            SceneManager.LoadScene(0);
+        }
     }
 
     private void Start() {
@@ -141,6 +147,9 @@ public class PlayerStateMachine: MonoBehaviour
     }
 
     #endregion
+
+  
+
 
 }
 
