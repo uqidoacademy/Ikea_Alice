@@ -36,3 +36,7 @@ sysinfo.txt
 *.unitypackage
 
 \.vscode/
+
+Assets/Scripts/Interactionableext\.cs
+
+Assets/Scripts/Interactionables/Maximizer\.cs
