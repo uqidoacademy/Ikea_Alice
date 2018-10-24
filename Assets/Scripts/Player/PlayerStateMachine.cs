@@ -8,6 +8,8 @@ public class PlayerStateMachine: MonoBehaviour
 {
     public Camera playerCamera;
 
+    public float timeToMoveHands = 1f;
+
     public GameObject LeftHand;
     public GameObject RightHand;
     public float AnimationTimer = 2.0f;
@@ -15,6 +17,11 @@ public class PlayerStateMachine: MonoBehaviour
     public float ScaledBig ;
     public float ScaledMedium ;
     public float ScaledSmall ;
+
+
+    public float DistanceHandsBig;
+    public float DistanceHandsMedium;
+    public float DistanceHandsSmall; 
 
     Sequence movementSequance;
 
@@ -41,7 +48,7 @@ public class PlayerStateMachine: MonoBehaviour
     }
 
     #endregion
-    /// <summary>
+    /// <summary> 
     /// Chiamata quando cambio stato
     /// </summary>
     private void StateChanged()
@@ -54,6 +61,7 @@ public class PlayerStateMachine: MonoBehaviour
                 ScalePlayerBy(ScaledSmall);
                 SetWalkSpeed(ScaledSmall);
                 SetFieldOfView(ScaledSmall);
+                SetDistanceHands(DistanceHandsSmall);
                 break;
 
             case PlayerState.medium:
@@ -61,7 +69,7 @@ public class PlayerStateMachine: MonoBehaviour
                 ScalePlayerBy(ScaledMedium);
                 SetWalkSpeed(ScaledMedium);
                 SetFieldOfView(ScaledMedium);
-                
+                SetDistanceHands(DistanceHandsMedium);
                 break;
 
             case PlayerState.big:
@@ -69,6 +77,7 @@ public class PlayerStateMachine: MonoBehaviour
                 ScalePlayerBy(ScaledBig);
                 SetWalkSpeed(ScaledBig);
                 SetFieldOfView(ScaledBig);
+                SetDistanceHands(DistanceHandsBig);
                 break;
         }
     }
@@ -111,6 +120,12 @@ public class PlayerStateMachine: MonoBehaviour
     {
         GetComponent<CharacterController>().enabled = true;
         GetComponent<FirstPersonController>().enabled = true;
+    }
+
+    private void SetDistanceHands(float distance)
+    {
+        LeftHand.GetComponent<Transform>().DOLocalMove(new Vector3(LeftHand.GetComponent<Transform>().localPosition.x, LeftHand.GetComponent<Transform>().localPosition.y, distance), timeToMoveHands);
+        RightHand.GetComponent<Transform>().DOLocalMove (new Vector3(RightHand.GetComponent<Transform>().localPosition.x, RightHand.GetComponent<Transform>().localPosition.y, distance), timeToMoveHands);
     }
 
     #endregion
