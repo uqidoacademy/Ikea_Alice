@@ -9,6 +9,12 @@ public interface IUsable
     bool CanBeUsed();
 
     /// <summary>
+    /// What animation should be used when the object is used
+    /// </summary>
+    /// <returns></returns>
+    Grabber.HandAnimationType useAnimationType();
+
+    /// <summary>
     /// What has to be done onUse
     /// </summary>
     void OnUse();

@@ -55,6 +55,23 @@ public class Interactionable : MonoBehaviour {
         }
     }
 
+
+    private Transform initialParent;
+
+    public Transform InitialParent
+    {
+        get
+        {
+            return initialParent;
+        }
+        set
+        {
+            if (value != initialParent)
+            {
+                initialParent = value;
+            }
+        }
+    }
     #endregion
 
     public void Awake()
@@ -67,6 +84,7 @@ public class Interactionable : MonoBehaviour {
         InitialPosition = transform.position;
         InitialScale = transform.localScale;
         InitialRotation = transform.eulerAngles;
+        InitialParent = transform.parent;
 
        // gameObject.layer = 10;
     }

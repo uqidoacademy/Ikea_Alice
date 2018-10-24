@@ -15,6 +15,11 @@ public class MagicDoor : Interactionable, IUsable {
         return true;
     }
 
+    public Grabber.HandAnimationType useAnimationType()
+    {
+        return Grabber.HandAnimationType.none;
+    }
+
     public string[] GetCollisionTags()
     {
         return new string[] { "UnlockKey" };

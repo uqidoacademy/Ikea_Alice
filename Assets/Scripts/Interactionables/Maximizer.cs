@@ -13,6 +13,11 @@ public class Maximizer : Interactionable, IUsable, IGrabable {
         return true;
     }
 
+    public Grabber.HandAnimationType useAnimationType()
+    {
+        return Grabber.HandAnimationType.eat;
+    }
+
     public string[] GetCollisionTags () {
         return new string[] { };
     }
