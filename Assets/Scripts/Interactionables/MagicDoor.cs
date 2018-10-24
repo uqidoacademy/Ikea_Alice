@@ -22,14 +22,12 @@ public class MagicDoor : Interactionable, IUsable {
 
     public void OnUse()
     {
+        EventManager.PreOpenDoor += OpenDoor;
         Debug.Log("Open door");
     }
 
     // Use this for initialization
     void Start () {
-
-        EventManager.PreOpenDoor += OpenDoor;
-
 	}
 
     void OpenDoor()
