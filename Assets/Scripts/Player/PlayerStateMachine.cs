@@ -8,6 +8,8 @@ public class PlayerStateMachine: MonoBehaviour
 {
     public Camera playerCamera;
 
+    public float timeToMoveHands = 1f;
+
     public GameObject LeftHand;
     public GameObject RightHand;
     public float AnimationTimer = 2.0f;
@@ -15,6 +17,11 @@ public class PlayerStateMachine: MonoBehaviour
     public float ScaledBig ;
     public float ScaledMedium ;
     public float ScaledSmall ;
+
+
+    public float DistanceHandsBig;
+    public float DistanceHandsMedium;
+    public float DistanceHandsSmall; 
 
     Sequence movementSequance;
 
@@ -31,7 +38,7 @@ public class PlayerStateMachine: MonoBehaviour
             {
                 PlayerState oldState = _currentState;
                 _currentState = value;
-                StateChanged();
+                StateChanged(oldState);
             }
             if (_currentState == value)
             {
@@ -41,44 +48,50 @@ public class PlayerStateMachine: MonoBehaviour
     }
 
     #endregion
-    /// <summary>
+    /// <summary> 
     /// Chiamata quando cambio stato
     /// </summary>
-    private void StateChanged()
+    private void StateChanged(PlayerState oldState)
     {
         
         switch (CurrentState)
         {
             case PlayerState.small:
                 DisableFPS();
-                ScalePlayerBy(ScaledSmall);
+                ScalePlayerBy(ScaledSmall, oldState);
                 SetWalkSpeed(ScaledSmall);
                 SetFieldOfView(ScaledSmall);
+                SetDistanceHands(DistanceHandsSmall);
                 break;
 
             case PlayerState.medium:
                 DisableFPS();
-                ScalePlayerBy(ScaledMedium);
+                ScalePlayerBy(ScaledMedium, oldState);
                 SetWalkSpeed(ScaledMedium);
                 SetFieldOfView(ScaledMedium);
-                
+                SetDistanceHands(DistanceHandsMedium);
                 break;
 
             case PlayerState.big:
                 DisableFPS();
-                ScalePlayerBy(ScaledBig);
+                ScalePlayerBy(ScaledBig, oldState);
                 SetWalkSpeed(ScaledBig);
                 SetFieldOfView(ScaledBig);
+                SetDistanceHands(DistanceHandsBig);
                 break;
         }
     }
 
     #region OnScale
-    private void ScalePlayerBy(float newScale)
+    private void ScalePlayerBy(float newScale, PlayerState oldState)
     {
         movementSequance = DOTween.Sequence();
         movementSequance.Append(transform.GetChild(0).DOScale(newScale, AnimationTimer));
-        movementSequance.OnComplete(()=> {EnableFPS();});
+        movementSequance.OnComplete(()=> {
+            EnableFPS();
+            if (CurrentState > oldState) EventManager.PostBecomeBigger();
+            else if(CurrentState < oldState) EventManager.PostBecomeSmaller();
+        });
               
     }
 
@@ -111,6 +124,12 @@ public class PlayerStateMachine: MonoBehaviour
     {
         GetComponent<CharacterController>().enabled = true;
         GetComponent<FirstPersonController>().enabled = true;
+    }
+
+    private void SetDistanceHands(float distance)
+    {
+        LeftHand.GetComponent<Transform>().DOLocalMove(new Vector3(LeftHand.GetComponent<Transform>().localPosition.x, LeftHand.GetComponent<Transform>().localPosition.y, distance), timeToMoveHands);
+        RightHand.GetComponent<Transform>().DOLocalMove (new Vector3(RightHand.GetComponent<Transform>().localPosition.x, RightHand.GetComponent<Transform>().localPosition.y, distance), timeToMoveHands);
     }
 
     #endregion
