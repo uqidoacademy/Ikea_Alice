@@ -53,7 +53,7 @@ public class Grabber : MonoBehaviour {
         }
 
 		if (Input.GetKeyDown(KeyCode.Mouse1) && primoGrabbato != null && grabbing && primoGrabbato.GetComponent<IUsable>() != null) {
-            animateEat(() =>
+            animate(HandAnimationType.eat, () =>
             {
                 (primoGrabbato.GetComponent<IUsable>()).OnUse();
             });
@@ -79,6 +79,19 @@ public class Grabber : MonoBehaviour {
     [SerializeField] Vector3 AnimationRotationScale = new Vector3(1, 1, 1);
     [SerializeField] Vector3 AnimationMoveScale = new Vector3(1, 1, 1);
     
+    enum HandAnimationType
+    {
+        eat,
+        useKey
+    };
+
+    private void animate(HandAnimationType animationType, Action callback)
+    {
+        switch (animationType)
+        {
+            case HandAnimationType.eat: animateEat(callback); break;
+        }
+    }
 
 
     private void animateEat(Action callback)
