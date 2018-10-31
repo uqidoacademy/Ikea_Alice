@@ -34,7 +34,8 @@ public class JumpingObject : MonoBehaviour
 
     void disableObject()
     {
-        gameObject.SetActive(false);
+        Destroy(gameObject);
+        
     }
 
 }
