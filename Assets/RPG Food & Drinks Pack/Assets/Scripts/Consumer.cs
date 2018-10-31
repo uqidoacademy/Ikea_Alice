@@ -28,6 +28,14 @@ public class Consumer : MonoBehaviour
         }
 
     }
+    private void OnCollisionExit(Collision collision)
+    {
+        if (transform.childCount == 0)
+        {
+            Destroy(gameObject.GetComponentInParent<GameObject>());
+        }
+        
+    }
 
 
     void Start()
