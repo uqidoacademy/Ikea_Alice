@@ -25,8 +25,9 @@ public class Minimizer : Interactionable, IUsable, IGrabable {
         return new string[] {  };
     }
 
-    public void OnUse()
+    public new void OnUse()
     {
+        base.OnUse();
         if (EventManager.PreBecomeSmaller != null)
             EventManager.PreBecomeSmaller();
     }
