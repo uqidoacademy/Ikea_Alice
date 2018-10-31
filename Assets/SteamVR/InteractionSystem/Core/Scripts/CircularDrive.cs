@@ -93,6 +93,8 @@ namespace Valve.VR.InteractionSystem
 
 		private bool driving = false;
 
+
+
 		// If the drive is limited as is at min/max, angles greater than this are ignored 
 		private float minMaxAngularThreshold = 1.0f;
 

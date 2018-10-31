@@ -7,6 +7,11 @@ TagManager:
   - HAND
   - UnlockKey
   - door
+  - projectile
+  - FxTemporaire
+  - Food
+  - RightHand
+  - Head
   layers:
   - Default
   - TransparentFX

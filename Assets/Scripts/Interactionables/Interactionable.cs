@@ -88,9 +88,10 @@ public class Interactionable : MonoBehaviour {
 
        // gameObject.layer = 10;
     }
-
+    
     private void OnCollisionEnter(Collision collision)
     {
+        
         if ((this is IUsable))
         {
             IUsable usable = (this as IUsable);
@@ -100,16 +101,16 @@ public class Interactionable : MonoBehaviour {
             }
         }
 
-        /*if (this is IGrabable)
+        if (this is IGrabable)
         {
             IGrabable grabable = (this as IGrabable);
             string tag = collision.gameObject.tag;
             Debug.Log(MainManager.Instance.HandTag);
             if (collision.gameObject.CompareTag(MainManager.Instance.HandTag ))
             {
-                grabable. OnGrab(Grabber ioTiGrabbo);
+               // grabable. OnGrab(Grabber ioTiGrabbo);
             }
-        } */
+        } 
     }
 
     protected void objectCanMove(bool active)
@@ -156,4 +157,5 @@ public static class InteractionableExt
     {
         _grabbed.transform.DOLocalMove(to.localPosition, 2f);
     }
+    
 }
