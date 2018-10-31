@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 88a5fb918f5631940967860130ea00d3
+guid: 5ddb7ab1ca02a1d4fad2df2694addc22
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
@@ -17,7 +17,12 @@ ModelImporter:
     3300000: plato
     4300000: plato
     10800000: Lamp
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material.001
+    second: {fileID: 2100000, guid: 57b1390a90e7b0847863c6b018d5e7aa, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
