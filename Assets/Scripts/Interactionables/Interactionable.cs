@@ -103,13 +103,13 @@ public class Interactionable : MonoBehaviour {
 
         if (this is IGrabable)
         {
-            IGrabable grabable = (this as IGrabable);
-            string tag = collision.gameObject.tag;
-            Debug.Log(MainManager.Instance.HandTag);
-            if (collision.gameObject.CompareTag(MainManager.Instance.HandTag ))
-            {
-               // grabable. OnGrab(Grabber ioTiGrabbo);
-            }
+            //IGrabable grabable = (this as IGrabable);
+            //string tag = collision.gameObject.tag;
+            //Debug.Log(MainManager.Instance.HandTag);
+            //if (collision.gameObject.CompareTag(MainManager.Instance.HandTag ))
+            //{
+            //   // grabable. OnGrab(Grabber ioTiGrabbo);
+            //}
         } 
     }
 

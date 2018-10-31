@@ -14,6 +14,10 @@ public class MagicDoor : Interactionable, IUsable {
     {
         return true;
     }
+    private void OnEnable()
+    {
+        EventManager.PreOpenDoor += OpenDoor;
+    }
 
     public Grabber.HandAnimationType useAnimationType()
     {
@@ -28,7 +32,7 @@ public class MagicDoor : Interactionable, IUsable {
     public void OnUse()
     {
         EventManager.PreOpenDoor += OpenDoor;
-        Debug.Log("Open door");
+       
     }
 
     // Use this for initialization
@@ -39,8 +43,9 @@ public class MagicDoor : Interactionable, IUsable {
     {
         if(hingeDoor != null)
         hingeDoor.transform.DORotate(new Vector3(0, angoloAperturaPorta, 0), tempoAperturaPorta);
+        Debug.Log("Open door");
         // after rotation has been done trigger event
-        if(EventManager.PostOpenDoor != null) EventManager.PostOpenDoor();
+        if (EventManager.PostOpenDoor != null) EventManager.PostOpenDoor();
     }
 	
 	// Update is called once per frame

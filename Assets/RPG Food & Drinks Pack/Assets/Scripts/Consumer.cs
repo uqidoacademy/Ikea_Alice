@@ -28,14 +28,6 @@ public class Consumer : MonoBehaviour
         }
 
     }
-    private void OnCollisionExit(Collision collision)
-    {
-        if (transform.childCount == 0)
-        {
-            Destroy(gameObject.GetComponentInParent<GameObject>());
-        }
-        
-    }
 
 
     void Start()
@@ -64,9 +56,14 @@ public class Consumer : MonoBehaviour
     {
         if (currentIndex != portions.Length)
             portions[currentIndex].SetActive(false);
+        
         currentIndex++;
         if (currentIndex > portions.Length)
+        {
             currentIndex = 0;
+           // Destroy(gameObject);
+        }
+            
         else if (currentIndex == portions.Length)
             return;
         portions[currentIndex].SetActive(true);

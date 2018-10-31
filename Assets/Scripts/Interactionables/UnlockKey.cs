@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class UnlockKey : Interactionable, IGrabable, IUsable {
 
+    private bool keyInDoor = false;
+
     public bool CanBeUsed()
     {
         return true;
@@ -36,9 +38,11 @@ public class UnlockKey : Interactionable, IGrabable, IUsable {
 
     public void OnUse()
     {
-        this.gameObject.transform.eulerAngles = new Vector3(0.0f, 0.0f, 0.0f);
-       
-        
+        //this.gameObject.transform.eulerAngles = new Vector3(0.0f, 0.0f, 0.0f);
+        Debug.Log("Entrata la chiave");
+        keyInDoor = true;
+        if (EventManager.PreOpenDoor != null)
+            EventManager.PreOpenDoor();
     }
 
     public void OnUngrab(){
@@ -52,17 +56,24 @@ public class UnlockKey : Interactionable, IGrabable, IUsable {
 	
 	// Update is called once per frame
 	void Update () {
-		
-	}
-
-    private void OnCollisionStay(Collision collision)
-    {
-        if (this.gameObject.transform.eulerAngles.z == 90)
+        /*
+        if (keyInDoor==true) // && this.gameObject.transform.eulerAngles.z > 90f)
         {
+            Debug.Log("Dovrebbe finire il gioco");
             MainManager.Instance.MainGrabber.animate(Grabber.HandAnimationType.useKey, () => {
                 if (EventManager.PreOpenDoor != null)
                     EventManager.PreOpenDoor();
             });
+
         }
+        */
+
+		
+	}
+
+    private void OnCollisionExit (Collision collision)
+    {
+        keyInDoor = false;
+        
     }
 }
