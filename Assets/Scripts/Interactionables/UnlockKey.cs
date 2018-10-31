@@ -36,10 +36,8 @@ public class UnlockKey : Interactionable, IGrabable, IUsable {
 
     public void OnUse()
     {
-        MainManager.Instance.MainGrabber.animate(Grabber.HandAnimationType.useKey, () => {
-            if (EventManager.PreOpenDoor != null)
-                EventManager.PreOpenDoor();
-        });
+        this.gameObject.transform.eulerAngles = new Vector3(0.0f, 0.0f, 0.0f);
+       
         
     }
 
@@ -56,4 +54,15 @@ public class UnlockKey : Interactionable, IGrabable, IUsable {
 	void Update () {
 		
 	}
+
+    private void OnCollisionStay(Collision collision)
+    {
+        if (this.gameObject.transform.eulerAngles.z == 90)
+        {
+            MainManager.Instance.MainGrabber.animate(Grabber.HandAnimationType.useKey, () => {
+                if (EventManager.PreOpenDoor != null)
+                    EventManager.PreOpenDoor();
+            });
+        }
+    }
 }
