@@ -10,6 +10,19 @@ public class Consumer : MonoBehaviour
     float lastChange;
     float interval = 1f;
 
+
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.gameObject.CompareTag("RightHand"))
+            if (Time.time - lastChange > interval)
+            {
+                Consume();
+                lastChange = Time.time;
+            }
+
+    }
+
+
     void Start()
     {
         bool skipFirst = transform.childCount > 4;
@@ -24,11 +37,11 @@ public class Consumer : MonoBehaviour
 
     void Update()
     {
-        if (Time.time - lastChange > interval)
+       /* if (Time.time - lastChange > interval)
         {
             Consume();
             lastChange = Time.time;
-        }
+        }*/
     }
 
     void Consume()
