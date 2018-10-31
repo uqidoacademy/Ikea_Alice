@@ -8,15 +8,20 @@ public class Consumer : MonoBehaviour
     public GameObject[] portions;
     int currentIndex;
     float lastChange;
-    float interval = 1f;
+    [SerializeField] float interval = 1f;
 
 
-    private void OnTriggerStay(Collider other)
+    private void OnCollisionStay(Collision other)
     {
-        if (other.gameObject.CompareTag("RightHand"))
+        if (other.gameObject.CompareTag("Head"))
         {
+            Debug.Log("MANGIANDO");
+            
+
             if (Time.time - lastChange > interval)
             {
+                float timeLeft = Time.time - lastChange;
+                Debug.Log(timeLeft);
                 Consume();
                 lastChange = Time.time;
             }
@@ -31,6 +36,7 @@ public class Consumer : MonoBehaviour
         portions = new GameObject[skipFirst ? transform.childCount-1 : transform.childCount];
         for (int i = 0; i < portions.Length; i++)
         {
+           
             portions[i] = transform.GetChild(skipFirst ? i + 1 : i).gameObject;
             if (portions[i].activeInHierarchy)
                 currentIndex = i;

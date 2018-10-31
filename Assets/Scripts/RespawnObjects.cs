@@ -7,8 +7,10 @@ public class RespawnObjects : MonoBehaviour {
 
     public float respawnTime = 2f;
 
-	// Use this for initialization
-	void Start () {
+    
+
+    // Use this for initialization
+    void Start () {
 		
 	}
 	
@@ -21,10 +23,10 @@ public class RespawnObjects : MonoBehaviour {
     {
         if (collision.gameObject.tag == "Food")
         {
-            collision.gameObject.transform.DOMove(collision.gameObject.GetComponent<Interactionable>().InitialPosition, respawnTime);
-            collision.gameObject.transform.DORotate(collision.gameObject.GetComponent<Interactionable>().InitialRotation, respawnTime);
-            collision.gameObject.transform.DOScale(collision.gameObject.GetComponent<Interactionable>().InitialScale, respawnTime);
-            collision.gameObject.transform.SetParent(collision.gameObject.GetComponent<Interactionable>().InitialParent);
+            collision.gameObject.transform.DOMove(collision.gameObject.GetComponent<SetInitialParam>().InitialPosition, respawnTime);
+            collision.gameObject.transform.DORotate(collision.gameObject.GetComponent<SetInitialParam>().InitialRotation, respawnTime);
+            collision.gameObject.transform.DOScale(collision.gameObject.GetComponent<SetInitialParam>().InitialScale, respawnTime);
+            collision.gameObject.transform.SetParent(collision.gameObject.GetComponent<SetInitialParam>().InitialParent);
         }
     }
 }
