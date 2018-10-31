@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Maximizer : Interactionable, IUsable, IGrabable {
 
+    
+
     private Transform genitore;
     public bool CanBeUsed () {
         return true;
@@ -22,9 +24,12 @@ public class Maximizer : Interactionable, IUsable, IGrabable {
         return new string[] { };
     }
 
-    public void OnUse () {
+    public new void OnUse () {
+        base.OnUse();
         if (EventManager.PreBecomeBigger != null)
             EventManager.PreBecomeBigger ();
+
+        
     }
 
     public void OnGrab (Grabber ioTiGrabbo) {
