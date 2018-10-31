@@ -5,7 +5,7 @@ using UnityEngine;
 public class Consumer : MonoBehaviour
 {
 
-    GameObject[] portions;
+    public GameObject[] portions;
     int currentIndex;
     float lastChange;
     float interval = 1f;
@@ -14,11 +14,13 @@ public class Consumer : MonoBehaviour
     private void OnTriggerStay(Collider other)
     {
         if (other.gameObject.CompareTag("RightHand"))
+        {
             if (Time.time - lastChange > interval)
             {
                 Consume();
                 lastChange = Time.time;
             }
+        }
 
     }
 

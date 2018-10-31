@@ -19,7 +19,7 @@ public class RespawnObjects : MonoBehaviour {
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.GetComponent<Interactionable>())
+        if (collision.gameObject.tag == "Food")
         {
             collision.gameObject.transform.DOMove(collision.gameObject.GetComponent<Interactionable>().InitialPosition, respawnTime);
             collision.gameObject.transform.DORotate(collision.gameObject.GetComponent<Interactionable>().InitialRotation, respawnTime);
