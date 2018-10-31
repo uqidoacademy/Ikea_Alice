@@ -4,6 +4,10 @@ using UnityEngine;
 using DG.Tweening;
 
 public class Interactionable : MonoBehaviour {
+    [SerializeField]
+    protected AudioSource SourceAudio;
+    [SerializeField]
+    protected AudioClip UseClip;
 
     #region Properties
     private Vector3 initialPosition;
@@ -88,7 +92,16 @@ public class Interactionable : MonoBehaviour {
 
        // gameObject.layer = 10;
     }
-    
+
+    public void OnUse()
+    {
+        if (SourceAudio != null)
+        {
+            SourceAudio.clip = UseClip;
+            SourceAudio.Play();
+        }
+    }
+
     private void OnCollisionEnter(Collision collision)
     {
         
