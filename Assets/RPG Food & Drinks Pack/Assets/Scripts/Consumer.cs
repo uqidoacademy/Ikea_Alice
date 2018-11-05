@@ -11,8 +11,9 @@ public class Consumer : Interactionable, IUsable, IGrabable
     float lastChange;
     [SerializeField] float interval = 1f;
     [SerializeField] AudioSource ConsumeAudioSource;
-    [SerializeField] ParticleSystem particleFX;
-    
+    private ParticleSystem EatingFX;
+    public ParticleSystem EatingFXprefab;
+
 
     private bool IsEating = false;
     bool handAttached = false;
@@ -46,6 +47,12 @@ public class Consumer : Interactionable, IUsable, IGrabable
 
     void Start()
     {
+        if (EatingFXprefab != null)
+        {
+            EatingFX = Instantiate(EatingFXprefab, transform).GetComponent<ParticleSystem>();
+            EatingFX.transform.SetSiblingIndex(0);
+        }
+
         bool skipFirst = transform.childCount > 4;
         portions = new GameObject[skipFirst ? transform.childCount-1 : transform.childCount];
         
@@ -99,8 +106,8 @@ public class Consumer : Interactionable, IUsable, IGrabable
 
     void Consume()
     {
-
-        particleFX.Play();
+        if(EatingFX)
+             EatingFX.Play();
 
         if (currentIndex < portions.Length)
             portions[currentIndex].SetActive(false);
@@ -127,7 +134,8 @@ public class Consumer : Interactionable, IUsable, IGrabable
                 EventManager.PreBecomeSmaller();
             
             IsEating = false;
-            particleFX.Stop();
+            if (EatingFX)
+                EatingFX.Stop();
             Destroy(gameObject);
             return;
         }
