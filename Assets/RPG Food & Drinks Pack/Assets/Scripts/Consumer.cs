@@ -53,9 +53,11 @@ public class Consumer : Interactionable, IUsable, IGrabable
             EatingFX.transform.SetSiblingIndex(0);
         }
 
-        bool skipFirst = transform.childCount > 4;
+        bool skipFirst = transform.childCount == 5;
+        bool skipSecond = transform.childCount == 6;
         portions = new GameObject[skipFirst ? transform.childCount-1 : transform.childCount];
-        
+        portions = new GameObject[skipSecond ? transform.childCount - 2 : transform.childCount -1];
+
         for (int i = 0; i < portions.Length; i++)
         {
            
@@ -66,8 +68,6 @@ public class Consumer : Interactionable, IUsable, IGrabable
 
         
     }
-
-
 
     void Update()
     {
