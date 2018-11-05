@@ -7,12 +7,12 @@ public class JumpingObject : MonoBehaviour
 {
 
     public float minJumpHeight = 0.1f;
-    public float maxJumpHeight = 0.5f;
+    public float maxJumpHeight = 0.3f;
     public int jumpNumber = 100;
     Sequence mySequence;
     Vector3 startPos;
     public Transform destinationPos;
-    public float moveTime = 1f;
+    public float moveTime = 5f;
     private void Start()
     {
         startPos = transform.position;

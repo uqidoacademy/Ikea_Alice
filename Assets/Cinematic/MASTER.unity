@@ -1747,12 +1747,12 @@ GameObject:
   - component: {fileID: 540201963}
   - component: {fileID: 540201962}
   m_Layer: 0
-  m_Name: Cube
+  m_Name: Fake
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &540201961
 Transform:
   m_ObjectHideFlags: 0
@@ -3689,7 +3689,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 989807752}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -10.524561, y: -9.138998, z: -1.0202093}
+  m_LocalPosition: {x: -10.524561, y: -9.138998, z: 0.768}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 540201961}
@@ -16703,7 +16703,7 @@ MonoBehaviour:
   m_margin: {x: 6.598278, y: -0.19511671, z: 7.2935424, w: 3.7146425}
   m_textInfo:
     textComponent: {fileID: 1853380977}
-    characterCount: 45
+    characterCount: 43
     spriteCount: 0
     spaceCount: 6
     wordCount: 7
@@ -16711,11 +16711,11 @@ MonoBehaviour:
     lineCount: 2
     pageCount: 1
     materialCount: 1
-  m_havePropertiesChanged: 1
+  m_havePropertiesChanged: 0
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
-  m_isInputParsingRequired: 1
+  m_isInputParsingRequired: 0
   m_inputSource: 0
   m_hasFontAssetChanged: 0
   m_renderer: {fileID: 1853380979}
