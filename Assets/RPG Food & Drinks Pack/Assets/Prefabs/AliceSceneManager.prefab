@@ -244,6 +244,7 @@ MonoBehaviour:
   endScreen: {fileID: 223850087590205484}
   fadeDuration: 3
   fadeOutAnimation: {fileID: 0}
+  ManagerAudio: {fileID: 0}
   MainGrabber: {fileID: 0}
 --- !u!114 &114633567643335762
 MonoBehaviour:
@@ -395,7 +396,7 @@ CanvasGroup:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1012643087530412}
   m_Enabled: 1
-  m_Alpha: 1
+  m_Alpha: 0
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0

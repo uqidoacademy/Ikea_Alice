@@ -9,6 +9,7 @@ public class Consumer : MonoBehaviour
     int currentIndex;
     float lastChange;
     [SerializeField] float interval = 1f;
+    [SerializeField] AudioSource ConsumeAudioSource;
 
 
     private void OnCollisionStay(Collision other)
@@ -54,10 +55,13 @@ public class Consumer : MonoBehaviour
 
     void Consume()
     {
-        if (currentIndex != portions.Length)
+        if (currentIndex < portions.Length)
             portions[currentIndex].SetActive(false);
         
         currentIndex++;
+
+        MainManager.Instance.ManagerAudio.playEffectOnce(ConsumeAudioSource);
+
         if (currentIndex > portions.Length)
         {
             currentIndex = 0;

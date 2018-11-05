@@ -51,9 +51,9 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: b47c948079cf13149aaf4d8e93a83e1e, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.845
+  m_Volume: 0.1
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -61,7 +61,7 @@ AudioSource:
   SpatializePostEffects: 0
   Priority: 128
   DopplerLevel: 1
-  MinDistance: 0.26897526
+  MinDistance: 0.21480656
   MaxDistance: 6.0455422
   Pan2D: 0
   rolloffMode: 0
@@ -146,18 +146,18 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
-  m_Volume: 0.54
+  m_audioClip: {fileID: 8300000, guid: f097da813cfcf1342ae38ba9c180aae3, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 0.1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
   Priority: 128
   DopplerLevel: 1
-  MinDistance: 1
-  MaxDistance: 500
+  MinDistance: 4.524439
+  MaxDistance: 8.175848
   Pan2D: 0
   rolloffMode: 0
   BypassEffects: 0
@@ -247,3 +247,4 @@ MonoBehaviour:
   AmbientNoiseSound: {fileID: 8300000, guid: f097da813cfcf1342ae38ba9c180aae3, type: 3}
   RoomAudioSource: {fileID: 82224871711370400}
   RoomNoiseSource: {fileID: 82974683980101410}
+  VolumeReducerScale: 0.54
