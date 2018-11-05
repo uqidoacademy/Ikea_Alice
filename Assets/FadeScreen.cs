@@ -7,9 +7,9 @@ public class FadeScreen : MonoBehaviour {
 	public GameObject quadToFade;
 
 	public GameObject teleportLocationRoom;
+	public GameObject teleportLocationSmall;
 
 	public void FadeScreenNow () {
-		Debug.Log("Teleport");
 		transform.position = teleportLocationRoom.transform.position;
         transform.rotation = teleportLocationRoom.transform.rotation;
 		//GameObject quad = Instantiate(quadToFade);
@@ -18,6 +18,10 @@ public class FadeScreen : MonoBehaviour {
 		//quad.transform.localRotation = Quaternion.identity;
 		//quad.transform.localScale = new Vector3(2,2,2);
 		//StartCoroutine (Lerp_MeshRenderer_Color (quad, 30f,new Color(0f,0f,0f,0f),new Color(0f,0f,0f,1f)));
+	}
+
+	public void GoToSmallSpawn(){
+		transform.position = teleportLocationSmall.transform.position;
 	}
 
 	private IEnumerator Lerp_MeshRenderer_Color (GameObject gameOb, float lerpDuration, Color startLerp, Color targetLerp) {
