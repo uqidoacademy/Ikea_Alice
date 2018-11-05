@@ -1300,8 +1300,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bigScale: 1.8
-  smallScale: 0.3
+  smallScale: 0.2
   changeStateTime: 2
+  sizeWhenSmall: 1.6
+  SpotWhenIsSmall: {fileID: 0}
   trackingOriginTransform: {fileID: 4721756667148840}
   hmdTransforms:
   - {fileID: 4359993454266482}
