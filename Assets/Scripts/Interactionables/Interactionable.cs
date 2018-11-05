@@ -93,7 +93,7 @@ public class Interactionable : MonoBehaviour {
        // gameObject.layer = 10;
     }
 
-    public void OnUse()
+    public virtual void OnUse(Collision collision = null)
     {
         if (SourceAudio != null)
         {
@@ -110,7 +110,7 @@ public class Interactionable : MonoBehaviour {
             IUsable usable = (this as IUsable);
             
             if (usable.CanBeUsed() && TagIncluded(collision.gameObject.tag, usable.GetCollisionTags())) {
-                usable.OnUse();
+                usable.OnUse(collision);
             }
         }
 
@@ -121,9 +121,23 @@ public class Interactionable : MonoBehaviour {
             //Debug.Log(MainManager.Instance.HandTag);
             //if (collision.gameObject.CompareTag(MainManager.Instance.HandTag ))
             //{
-            //   // grabable. OnGrab(Grabber ioTiGrabbo);
+            //   // grabable. OnGrab(GameObject collision.gameObject);
             //}
         } 
+    }
+
+    protected void OnTriggerEnter(Collider other)
+    {
+        if (this is IUsable)
+        {
+            IUsable usable = (this as IUsable);
+
+            if (usable.CanBeUsed() && TagIncluded(other.gameObject.tag, usable.GetCollisionTags()))
+            {
+                Debug.Log("LA CHIAVE ENTRATA NELLA PORTA");
+                usable.OnUse();
+            }
+        }
     }
 
     protected void objectCanMove(bool active)

@@ -1,7 +1,8 @@
 ﻿using System;
 
-public class EventManager
+public static class EventManager
 {
+    /*
     #region Singleton
 
     private EventManager()
@@ -16,6 +17,7 @@ public class EventManager
     }
 
     #endregion
+    */
 
     public delegate void BecomeBiggerEvent();
 

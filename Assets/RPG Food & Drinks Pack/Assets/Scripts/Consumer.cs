@@ -2,22 +2,28 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Consumer : MonoBehaviour
+public class Consumer : Interactionable, IUsable, IGrabable
 {
 
     public GameObject[] portions;
+    [SerializeField] GameObject cork;
     int currentIndex;
     float lastChange;
     [SerializeField] float interval = 1f;
     [SerializeField] AudioSource ConsumeAudioSource;
 
+    private bool IsEating = false;
 
+    /*
     private void OnCollisionStay(Collision other)
     {
         if (other.gameObject.CompareTag("Head"))
-        {
-            Debug.Log("MANGIANDO");
-            
+        {           
+            if(cork != null)
+            {
+                cork.SetActive(false);
+            }
+           
 
             if (Time.time - lastChange > interval)
             {
@@ -28,7 +34,10 @@ public class Consumer : MonoBehaviour
             }
         }
 
+        
+
     }
+    */
 
 
     void Start()
@@ -46,11 +55,24 @@ public class Consumer : MonoBehaviour
 
     void Update()
     {
-       /* if (Time.time - lastChange > interval)
+        if ( IsEating)
         {
-            Consume();
-            lastChange = Time.time;
-        }*/
+            Debug.Log("MANGIANDO");
+
+
+            if (Time.time - lastChange > interval)
+            {
+                float timeLeft = Time.time - lastChange;
+                Debug.Log(timeLeft);
+                Consume();
+                lastChange = Time.time;
+            }
+        }
+        /* if (Time.time - lastChange > interval)
+         {
+             Consume();
+             lastChange = Time.time;
+         }*/
     }
 
     void Consume()
@@ -65,12 +87,76 @@ public class Consumer : MonoBehaviour
         if (currentIndex > portions.Length)
         {
             currentIndex = 0;
-           // Destroy(gameObject);
+            // Destroy(gameObject);
         }
-            
-        else if (currentIndex == portions.Length)
+
+        else if (currentIndex  == portions.Length)
+        {
+            if (EventManager.PreBecomeBigger != null)
+                EventManager.PreBecomeBigger();
+
             return;
-        portions[currentIndex].SetActive(true);
+        }
+       portions[currentIndex].SetActive(true);
     }
 
+    public bool CanBeUsed()
+    {
+        return true;
+    }
+
+    public Grabber.HandAnimationType useAnimationType()
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public string[] GetCollisionTags()
+    {
+        return new string[] { "Head" };
+    }
+
+    public bool CanGrab()
+    {
+        return true;
+    }
+
+    public override void OnUse(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Head"))
+        {
+            base.OnUse(collision);
+            IsEating = true;
+        }
+        /*
+        if (EventManager.PreBecomeBigger != null)
+            EventManager.PreBecomeBigger();
+
+        */
+
+    }
+
+    public void OnGrab(GameObject ioTiGrabbo)
+    {
+        /*
+        genitore = this.transform.parent;
+        this.RemoveGravityAndRotation();
+        this.SetMyParent(ioTiGrabbo.transform);
+        */
+    }
+
+
+    public void OnUngrab()
+    {
+        /*
+
+        this.EnableGravityAndRotation();
+        this.SetMyParent(genitore);
+        */
+    }
+
+    void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.CompareTag("Head"))
+            IsEating = false;
+    }
 }

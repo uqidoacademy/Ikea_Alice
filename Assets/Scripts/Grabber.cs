@@ -50,7 +50,7 @@ public class Grabber : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Mouse0) && !grabbing && primoGrabbato != null)
         {
 
-            (primoGrabbato.GetComponent<IGrabable>()).OnGrab(this);
+           // (primoGrabbato.GetComponent<IGrabable>()).OnGrab(this);
             primoGrabbato.GetComponent<Renderer>().material.color = Color.green;
             oggettoSelezionato = primoGrabbato.gameObject;
             grabbing = true;
@@ -68,7 +68,7 @@ public class Grabber : MonoBehaviour
         {
             animate(primoGrabbato.GetComponent<IUsable>().useAnimationType(), () =>
             {
-                (primoGrabbato.GetComponent<IUsable>()).OnUse();
+               // (primoGrabbato.GetComponent<IUsable>()).OnUse();
             });
 
         }

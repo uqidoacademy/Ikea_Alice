@@ -22,17 +22,17 @@ public class Minimizer : Interactionable, IUsable, IGrabable {
 
     public string[] GetCollisionTags()
     {
-        return new string[] {  };
+        return new string[] { "Head" };
     }
 
-    public new void OnUse()
+    public override void OnUse(Collision collision = null)
     {
         base.OnUse();
         if (EventManager.PreBecomeSmaller != null)
             EventManager.PreBecomeSmaller();
     }
 
-    public void OnGrab (Grabber ioTiGrabbo) {
+    public void OnGrab (GameObject ioTiGrabbo) {
         genitore = this.transform.parent;
         this.RemoveGravityAndRotation ();
         this.SetMyParent (ioTiGrabbo.transform);

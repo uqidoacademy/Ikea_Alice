@@ -21,18 +21,18 @@ public class Maximizer : Interactionable, IUsable, IGrabable {
     }
 
     public string[] GetCollisionTags () {
-        return new string[] { };
+        return new string[] { "Head"};
     }
 
-    public new void OnUse () {
-        base.OnUse();
+    public override void OnUse (Collision collision) {
+        base.OnUse(collision);
         if (EventManager.PreBecomeBigger != null)
             EventManager.PreBecomeBigger ();
 
         
     }
 
-    public void OnGrab (Grabber ioTiGrabbo) {
+    public void OnGrab (GameObject ioTiGrabbo) {
         genitore = this.transform.parent;
         this.RemoveGravityAndRotation ();
         this.SetMyParent (ioTiGrabbo.transform);
