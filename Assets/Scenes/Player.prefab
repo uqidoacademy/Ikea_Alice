@@ -1219,8 +1219,8 @@ MonoBehaviour:
   rig2DFallback: {fileID: 1680408056787436}
   audioListener: {fileID: 4039970079089120}
   allowToggleTo2D: 1
-  ScaleUpAudioClip: {fileID: 8300000, guid: d5a0f6bdd0d091a4c9ee746a5c73739d, type: 3}
-  ScaleDownAudioClip: {fileID: 8300000, guid: d88b15a8016125e4090199950bb399cd, type: 3}
+  ScaleUpAudioClip: {fileID: 8300000, guid: ff7b2125a5d84144da2bbc2ba02b2347, type: 3}
+  ScaleDownAudioClip: {fileID: 8300000, guid: 9247254b491d6b44d87be3467ca6a6a1, type: 3}
 --- !u!114 &114359584103632116
 MonoBehaviour:
   m_ObjectHideFlags: 1
