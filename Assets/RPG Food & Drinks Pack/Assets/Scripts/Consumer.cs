@@ -15,6 +15,7 @@ public class Consumer : Interactionable, IUsable, IGrabable
     
 
     private bool IsEating = false;
+    bool handAttached = false;
     
 
     /*
@@ -47,6 +48,7 @@ public class Consumer : Interactionable, IUsable, IGrabable
     {
         bool skipFirst = transform.childCount > 4;
         portions = new GameObject[skipFirst ? transform.childCount-1 : transform.childCount];
+        
         for (int i = 0; i < portions.Length; i++)
         {
            
@@ -54,6 +56,22 @@ public class Consumer : Interactionable, IUsable, IGrabable
             if (portions[i].activeInHierarchy)
                 currentIndex = i;
         }
+
+        if (GetComponent<Valve.VR.InteractionSystem.Interactable>() != null)
+        {
+            GetComponent<Valve.VR.InteractionSystem.Interactable>().onAttachedToHand += attachedToHand;
+            GetComponent<Valve.VR.InteractionSystem.Interactable>().onDetachedFromHand += detachedFromHand;
+        }
+    }
+
+    private void attachedToHand(Valve.VR.InteractionSystem.Hand hand) 
+    {
+        handAttached = false;
+    }
+
+    private void detachedFromHand(Valve.VR.InteractionSystem.Hand hand)
+    {
+        handAttached = true;
     }
 
     void Update()
@@ -138,7 +156,7 @@ public class Consumer : Interactionable, IUsable, IGrabable
 
     public override void OnUse(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Head"))
+        if (collision.gameObject.CompareTag("Head") && handAttached)
         {
             base.OnUse(collision);
             IsEating = true;
