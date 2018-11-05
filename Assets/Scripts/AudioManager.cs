@@ -28,8 +28,10 @@ public class AudioManager : MonoBehaviour {
     [SerializeField]
     private AudioSource RoomNoiseSource;
     [SerializeField]
+    private AudioSource AudioSourceWonderland;
+    [SerializeField]
     private float VolumeReducerScale = 1;
-
+    
     private float initialAmbientVolume = 1;
     private float initialNoiseVolume = 1;
 
@@ -42,6 +44,43 @@ public class AudioManager : MonoBehaviour {
         RoomNoiseSource.clip = AmbientNoiseSound;
         initialNoiseVolume = RoomNoiseSource.volume;
         RoomNoiseSource.Play();
+    }
+
+    public void PlayWonderland()
+    {
+        StartCoroutine(AudioManager.FadeOut(RoomAudioSource, 0.5f));
+        StartCoroutine(AudioManager.FadeIn(AudioSourceWonderland, 0.5f));
+    }
+
+    public static IEnumerator FadeOut(AudioSource audioSource, float FadeTime)
+    {
+        float startVolume = audioSource.volume;
+
+        while (audioSource.volume > 0)
+        {
+            audioSource.volume -= startVolume * Time.deltaTime / FadeTime;
+
+            yield return null;
+        }
+
+        audioSource.Stop();
+        audioSource.volume = startVolume;
+    }
+
+    public static IEnumerator FadeIn(AudioSource audioSource, float FadeTime)
+    {
+        float targetVolume = audioSource.volume;
+        audioSource.volume = 0;
+        audioSource.Play();
+        while (audioSource.volume < targetVolume)
+        {
+            audioSource.volume += targetVolume * Time.deltaTime / FadeTime;
+
+            yield return null;
+        }
+
+        
+        audioSource.volume = targetVolume;
     }
 
     public void playEffectOnce(AudioSource source)

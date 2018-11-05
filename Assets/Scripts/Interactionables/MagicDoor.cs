@@ -47,6 +47,7 @@ public class MagicDoor : Interactionable, IUsable {
         hingeDoor.transform.DORotate(new Vector3(0, angoloAperturaPorta, 0), tempoAperturaPorta);
         Debug.Log("Open door");
         // after rotation has been done trigger event
+        MainManager.Instance.ManagerAudio.PlayWonderland();
         if (EventManager.PostOpenDoor != null) EventManager.PostOpenDoor();
     }
 	
