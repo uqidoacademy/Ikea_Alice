@@ -26,23 +26,23 @@ public class UnlockKey : Interactionable, IGrabable, IUsable {
         return new string[] { "door" };
     }
 
-    public void  OnGrab(Grabber ioTiGrabbo)
+    public void  OnGrab(GameObject ioTiGrabbo)
     {
         this.RemoveGravityAndRotation();
         this.SetMyParent(ioTiGrabbo.transform);
-        this.AnimateSequence(ioTiGrabbo.secondHand.transform);
-        this.SetMyParent(ioTiGrabbo.secondHand.transform);
+        //this.AnimateSequence(ioTiGrabbo.secondHand.transform);
+        //this.SetMyParent(ioTiGrabbo.secondHand.transform);
         this.FreezeAllConstraints();
         if(EventManager.OnKeyGrabbed != null) EventManager.OnKeyGrabbed(true);
     }
 
-    public void OnUse()
+    public new void OnUse()
     {
+        base.OnUse();
         //this.gameObject.transform.eulerAngles = new Vector3(0.0f, 0.0f, 0.0f);
         Debug.Log("Entrata la chiave");
         keyInDoor = true;
-        if (EventManager.PreOpenDoor != null)
-            EventManager.PreOpenDoor();
+        
     }
 
     public void OnUngrab(){

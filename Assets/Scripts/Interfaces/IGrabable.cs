@@ -1,4 +1,6 @@
 ﻿
+using UnityEngine;
+
 public interface IGrabable
 {
     /// <summary>
@@ -10,7 +12,7 @@ public interface IGrabable
     /// <summary>
     /// What has to be done on grab
     /// </summary>
-    void OnGrab(Grabber ioTiGrabbo);
+    void OnGrab(GameObject ioTiGrabbo);
 
     /// <summary>
     /// What has to be done on ungrab

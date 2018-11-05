@@ -32,7 +32,7 @@ public class Maximizer : Interactionable, IUsable, IGrabable {
         
     }
 
-    public void OnGrab (Grabber ioTiGrabbo) {
+    public void OnGrab (GameObject ioTiGrabbo) {
         genitore = this.transform.parent;
         this.RemoveGravityAndRotation ();
         this.SetMyParent (ioTiGrabbo.transform);

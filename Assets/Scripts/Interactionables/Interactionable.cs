@@ -121,9 +121,23 @@ public class Interactionable : MonoBehaviour {
             //Debug.Log(MainManager.Instance.HandTag);
             //if (collision.gameObject.CompareTag(MainManager.Instance.HandTag ))
             //{
-            //   // grabable. OnGrab(Grabber ioTiGrabbo);
+            //   // grabable. OnGrab(GameObject collision.gameObject);
             //}
         } 
+    }
+
+    protected void OnTriggerEnter(Collider other)
+    {
+        if (this is IUsable)
+        {
+            IUsable usable = (this as IUsable);
+
+            if (usable.CanBeUsed() && TagIncluded(other.gameObject.tag, usable.GetCollisionTags()))
+            {
+                Debug.Log("LA CHIAVE ENTRATA NELLA PORTA");
+                usable.OnUse();
+            }
+        }
     }
 
     protected void objectCanMove(bool active)

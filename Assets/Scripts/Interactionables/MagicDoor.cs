@@ -26,13 +26,15 @@ public class MagicDoor : Interactionable, IUsable {
 
     public string[] GetCollisionTags()
     {
-        return new string[] { "UnlockKey" };
+        return new string[] { "UnlockKey","Key" };
     }
 
-    public void OnUse()
+    public new void OnUse()
     {
-        EventManager.PreOpenDoor += OpenDoor;
-       
+        base.OnUse();
+        if (EventManager.PreOpenDoor != null)
+            EventManager.PreOpenDoor();
+
     }
 
     // Use this for initialization
