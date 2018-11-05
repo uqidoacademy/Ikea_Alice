@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class UnlockKey : Interactionable, IGrabable, IUsable {
 
+    private bool keyInDoor = false;
+
     public bool CanBeUsed()
     {
         return true;
@@ -24,20 +26,22 @@ public class UnlockKey : Interactionable, IGrabable, IUsable {
         return new string[] { "door" };
     }
 
-    public void  OnGrab(Grabber ioTiGrabbo)
+    public void  OnGrab(GameObject ioTiGrabbo)
     {
         this.RemoveGravityAndRotation();
         this.SetMyParent(ioTiGrabbo.transform);
-        this.AnimateSequence(ioTiGrabbo.secondHand.transform);
-        this.SetMyParent(ioTiGrabbo.secondHand.transform);
+        //this.AnimateSequence(ioTiGrabbo.secondHand.transform);
+        //this.SetMyParent(ioTiGrabbo.secondHand.transform);
         this.FreezeAllConstraints();
         if(EventManager.OnKeyGrabbed != null) EventManager.OnKeyGrabbed(true);
     }
 
-    public void OnUse()
+    public override void OnUse(Collision collision = null)
     {
-        this.gameObject.transform.eulerAngles = new Vector3(0.0f, 0.0f, 0.0f);
-       
+        base.OnUse();
+        //this.gameObject.transform.eulerAngles = new Vector3(0.0f, 0.0f, 0.0f);
+        Debug.Log("Entrata la chiave");
+        keyInDoor = true;
         
     }
 
@@ -52,17 +56,24 @@ public class UnlockKey : Interactionable, IGrabable, IUsable {
 	
 	// Update is called once per frame
 	void Update () {
-		
-	}
-
-    private void OnCollisionStay(Collision collision)
-    {
-        if (this.gameObject.transform.eulerAngles.z == 90)
+        /*
+        if (keyInDoor==true) // && this.gameObject.transform.eulerAngles.z > 90f)
         {
+            Debug.Log("Dovrebbe finire il gioco");
             MainManager.Instance.MainGrabber.animate(Grabber.HandAnimationType.useKey, () => {
                 if (EventManager.PreOpenDoor != null)
                     EventManager.PreOpenDoor();
             });
+
         }
+        */
+
+		
+	}
+
+    private void OnCollisionExit (Collision collision)
+    {
+        keyInDoor = false;
+        
     }
 }

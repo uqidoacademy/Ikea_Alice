@@ -14,6 +14,10 @@ public class MagicDoor : Interactionable, IUsable {
     {
         return true;
     }
+    private void OnEnable()
+    {
+        EventManager.PreOpenDoor += OpenDoor;
+    }
 
     public Grabber.HandAnimationType useAnimationType()
     {
@@ -22,13 +26,15 @@ public class MagicDoor : Interactionable, IUsable {
 
     public string[] GetCollisionTags()
     {
-        return new string[] { "UnlockKey" };
+        return new string[] { "UnlockKey","Key" };
     }
 
-    public void OnUse()
+    public override void OnUse(Collision collision = null)
     {
-        EventManager.PreOpenDoor += OpenDoor;
-        Debug.Log("Open door");
+        base.OnUse();
+        if (EventManager.PreOpenDoor != null)
+            EventManager.PreOpenDoor();
+
     }
 
     // Use this for initialization
@@ -39,8 +45,10 @@ public class MagicDoor : Interactionable, IUsable {
     {
         if(hingeDoor != null)
         hingeDoor.transform.DORotate(new Vector3(0, angoloAperturaPorta, 0), tempoAperturaPorta);
+        Debug.Log("Open door");
         // after rotation has been done trigger event
-        if(EventManager.PostOpenDoor != null) EventManager.PostOpenDoor();
+        MainManager.Instance.ManagerAudio.PlayWonderland();
+        if (EventManager.PostOpenDoor != null) EventManager.PostOpenDoor();
     }
 	
 	// Update is called once per frame

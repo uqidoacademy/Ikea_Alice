@@ -7,6 +7,7 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 
 namespace Valve.VR.InteractionSystem
 {
@@ -16,6 +17,10 @@ namespace Valve.VR.InteractionSystem
 	//-------------------------------------------------------------------------
 	public class Player : MonoBehaviour
 	{
+        public float bigScale = 3f;
+        public float smallScale = 0.3f;
+        public float changeStateTime = 2f;
+
 		[Tooltip( "Virtual transform corresponding to the meatspace tracking origin. Devices are tracked relative to this." )]
 		public Transform trackingOriginTransform;
 
@@ -39,11 +44,14 @@ namespace Valve.VR.InteractionSystem
 
 		public bool allowToggleTo2D = true;
 
+        public AudioClip ScaleUpAudioClip;
+        public AudioClip ScaleDownAudioClip;
 
-		//-------------------------------------------------
-		// Singleton instance of the Player. Only one can exist at a time.
-		//-------------------------------------------------
-		private static Player _instance;
+
+        //-------------------------------------------------
+        // Singleton instance of the Player. Only one can exist at a time.
+        //-------------------------------------------------
+        private static Player _instance;
 		public static Player instance
 		{
 			get
@@ -255,6 +263,7 @@ namespace Valve.VR.InteractionSystem
 			{
 				trackingOriginTransform = this.transform;
 			}
+            SetUp();
 		}
 
 
@@ -394,5 +403,42 @@ namespace Valve.VR.InteractionSystem
 		{
 			//Do something appropriate here
 		}
-	}
+        #region Scale
+        public void SetUp()
+        {
+            EventManager.PreBecomeBigger += OnPlayerBig;
+            EventManager.PreBecomeSmaller += OnPlayerSmall;
+        }
+
+        /// <summary>
+        /// Funzione che ingrandisce lo stato
+        /// </summary>
+        private void OnPlayerBig()
+        {
+            transform.DOScale(bigScale, changeStateTime);
+            PlayClip(ScaleUpAudioClip);
+        }
+
+        /// <summary>
+        /// Funzione che rimpicciolisce le cose
+        /// </summary>
+        /// 
+        
+        private void OnPlayerSmall()
+        {
+            transform.DOScale(smallScale, changeStateTime);
+            PlayClip(ScaleDownAudioClip);
+        }
+        
+        #endregion
+
+        private void PlayClip(AudioClip audio)
+        {
+            AudioSource source = GetComponent<AudioSource>();
+            source.clip = audio;
+            MainManager.Instance.ManagerAudio.playEffectOnce(source);
+        }
+    }
+
+
 }
