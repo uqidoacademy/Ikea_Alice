@@ -131,6 +131,8 @@ public class Consumer : Interactionable, IUsable, IGrabable
         {
             if (EventManager.PreBecomeBigger != null && _currentOperationSize == SizeOperation.Maximazer) {
                 EventManager.PreBecomeBigger();
+                //Aggiunta PLAY timeline dopo bevuta pozione
+                MainManager.Instance.scenaDopoPozione.Play();
             }
                
 

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Playables;
 
 public class MainManager : MonoBehaviour
 {
@@ -16,6 +17,8 @@ public class MainManager : MonoBehaviour
     public AudioManager ManagerAudio;
 
     public Grabber MainGrabber;
+
+    public PlayableDirector scenaDopoPozione;
 
     #region Singleton
 
