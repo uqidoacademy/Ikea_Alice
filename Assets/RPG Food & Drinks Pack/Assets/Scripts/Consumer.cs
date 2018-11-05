@@ -67,7 +67,6 @@ public class Consumer : Interactionable, IUsable, IGrabable
             if (Time.time - lastChange > interval)
             {
                 float timeLeft = Time.time - lastChange;
-                Debug.Log(timeLeft);
                 Consume();
                 lastChange = Time.time;
             }
@@ -81,10 +80,13 @@ public class Consumer : Interactionable, IUsable, IGrabable
 
     void Consume()
     {
+
+        particleFX.Play();
+
         if (currentIndex < portions.Length)
             portions[currentIndex].SetActive(false);
 
-        particleFX.Play();
+        
         currentIndex++;
 
         MainManager.Instance.ManagerAudio.playEffectOnce(ConsumeAudioSource);
@@ -97,11 +99,14 @@ public class Consumer : Interactionable, IUsable, IGrabable
 
         else if (currentIndex  == portions.Length)
         {
-            if (EventManager.PreBecomeBigger != null && _currentOperationSize == SizeOperation.Maximazer)
+            if (EventManager.PreBecomeBigger != null && _currentOperationSize == SizeOperation.Maximazer) {
                 EventManager.PreBecomeBigger();
+            }
+               
 
             if (EventManager.PreBecomeSmaller != null && _currentOperationSize == SizeOperation.Minimazer)
                 EventManager.PreBecomeSmaller();
+            
             IsEating = false;
             particleFX.Stop();
             Destroy(gameObject);

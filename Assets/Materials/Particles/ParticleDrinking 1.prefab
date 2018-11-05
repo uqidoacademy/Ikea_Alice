@@ -9,46 +9,46 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 1765870930032068}
+  m_RootGameObject: {fileID: 1351324591914850}
   m_IsPrefabAsset: 1
---- !u!1 &1765870930032068
+--- !u!1 &1351324591914850
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 4977371384495770}
-  - component: {fileID: 198270662129213034}
-  - component: {fileID: 199073692255284098}
+  - component: {fileID: 4030297103236050}
+  - component: {fileID: 198740741297369128}
+  - component: {fileID: 199174973210560044}
   m_Layer: 0
-  m_Name: ParticleEating
+  m_Name: ParticleDrinking 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4977371384495770
+--- !u!4 &4030297103236050
 Transform:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1765870930032068}
-  m_LocalRotation: {x: -0.7071069, y: 1.1641531e-10, z: -2.2555466e-10, w: 0.70710677}
-  m_LocalPosition: {x: 0.76399994, y: 0.076, z: 4.327}
-  m_LocalScale: {x: 0.1, y: 0.100000285, z: 0.10000028}
+  m_GameObject: {fileID: 1351324591914850}
+  m_LocalRotation: {x: 0.35801956, y: -0, z: -0, w: 0.9337141}
+  m_LocalPosition: {x: 2.0765, y: 1.7299, z: 5.2025}
+  m_LocalScale: {x: 0.1, y: 0.10000002, z: 0.10000002}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
---- !u!198 &198270662129213034
+  m_LocalEulerAnglesHint: {x: 41.957, y: 0, z: 0}
+--- !u!198 &198740741297369128
 ParticleSystem:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1765870930032068}
+  m_GameObject: {fileID: 1351324591914850}
   serializedVersion: 5
-  lengthInSec: 10
+  lengthInSec: 0.3
   simulationSpeed: 1
   stopAction: 0
   looping: 1
@@ -120,7 +120,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.6
+      scalar: 0.3
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -227,7 +227,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 0.6320754, g: 0.3278624, b: 0, a: 1}
+      maxColor: {r: 0.63800895, g: 0.15886435, b: 0.6603774, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -605,13 +605,13 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     randomizeRotationDirection: 0
-    maxNumParticles: 50
+    maxNumParticles: 5000
     size3D: 0
     rotation3D: 0
     gravityModifier:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 10
+      scalar: 2
       minScalar: 0
       maxCurve:
         serializedVersion: 2
@@ -665,7 +665,7 @@ ParticleSystem:
     serializedVersion: 5
     enabled: 1
     type: 4
-    angle: 64.67
+    angle: 3.93
     length: 5
     boxThickness: {x: 0, y: 0, z: 0}
     radiusThickness: 1
@@ -695,7 +695,7 @@ ParticleSystem:
     sphericalDirectionAmount: 0
     randomPositionAmount: 0
     radius:
-      value: 1
+      value: 0.85
       mode: 0
       spread: 0
       speed:
@@ -4574,13 +4574,13 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     vectorLabel1_3: W
---- !u!199 &199073692255284098
+--- !u!199 &199174973210560044
 ParticleSystemRenderer:
   serializedVersion: 6
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1765870930032068}
+  m_GameObject: {fileID: 1351324591914850}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
