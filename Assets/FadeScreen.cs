@@ -11,6 +11,7 @@ public class FadeScreen : MonoBehaviour {
 	public void FadeScreenNow () {
 		Debug.Log("Teleport");
 		transform.position = teleportLocationRoom.transform.position;
+        transform.rotation = teleportLocationRoom.transform.rotation;
 		//GameObject quad = Instantiate(quadToFade);
 		//quad.transform.parent = transform;
 		//quad.transform.localPosition = new Vector3(0,0,1);
