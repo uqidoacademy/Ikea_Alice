@@ -68,7 +68,7 @@ public class Grabber : MonoBehaviour
         {
             animate(primoGrabbato.GetComponent<IUsable>().useAnimationType(), () =>
             {
-                (primoGrabbato.GetComponent<IUsable>()).OnUse();
+               // (primoGrabbato.GetComponent<IUsable>()).OnUse();
             });
 
         }

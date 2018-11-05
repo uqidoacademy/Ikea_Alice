@@ -93,7 +93,7 @@ public class Interactionable : MonoBehaviour {
        // gameObject.layer = 10;
     }
 
-    public void OnUse(Collision collision)
+    public virtual void OnUse(Collision collision = null)
     {
         if (SourceAudio != null)
         {

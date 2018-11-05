@@ -36,7 +36,7 @@ public class UnlockKey : Interactionable, IGrabable, IUsable {
         if(EventManager.OnKeyGrabbed != null) EventManager.OnKeyGrabbed(true);
     }
 
-    public new void OnUse()
+    public override void OnUse(Collision collision = null)
     {
         base.OnUse();
         //this.gameObject.transform.eulerAngles = new Vector3(0.0f, 0.0f, 0.0f);

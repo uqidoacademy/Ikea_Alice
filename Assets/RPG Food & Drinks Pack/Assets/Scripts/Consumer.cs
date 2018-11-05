@@ -110,7 +110,7 @@ public class Consumer : Interactionable, IUsable, IGrabable
         return true;
     }
 
-    public new void OnUse(Collision collision)
+    public override void OnUse(Collision collision)
     {
         if (collision.gameObject.CompareTag("Head"))
         {
@@ -142,5 +142,11 @@ public class Consumer : Interactionable, IUsable, IGrabable
         this.EnableGravityAndRotation();
         this.SetMyParent(genitore);
         */
+    }
+
+    void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.CompareTag("Head"))
+            IsEating = false;
     }
 }

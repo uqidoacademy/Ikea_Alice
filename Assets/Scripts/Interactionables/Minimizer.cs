@@ -25,7 +25,7 @@ public class Minimizer : Interactionable, IUsable, IGrabable {
         return new string[] { "Head" };
     }
 
-    public new void OnUse()
+    public override void OnUse(Collision collision = null)
     {
         base.OnUse();
         if (EventManager.PreBecomeSmaller != null)

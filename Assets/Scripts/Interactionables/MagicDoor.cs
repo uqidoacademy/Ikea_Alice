@@ -29,7 +29,7 @@ public class MagicDoor : Interactionable, IUsable {
         return new string[] { "UnlockKey","Key" };
     }
 
-    public new void OnUse()
+    public override void OnUse(Collision collision = null)
     {
         base.OnUse();
         if (EventManager.PreOpenDoor != null)

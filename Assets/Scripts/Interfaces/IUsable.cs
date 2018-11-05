@@ -19,7 +19,7 @@ public interface IUsable
     /// <summary>
     /// What has to be done onUse
     /// </summary>
-    void OnUse(Collision collision);
+    void OnUse(Collision collision = null);
 
     /// <summary>
     /// Get array of tags to interact with
