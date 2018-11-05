@@ -21,6 +21,10 @@ namespace Valve.VR.InteractionSystem
         public float smallScale = 0.3f;
         public float changeStateTime = 2f;
 
+        public float sizeWhenSmall = 1.2f;
+
+        public Transform SpotWhenIsSmall;
+
 		[Tooltip( "Virtual transform corresponding to the meatspace tracking origin. Devices are tracked relative to this." )]
 		public Transform trackingOriginTransform;
 
@@ -427,6 +431,8 @@ namespace Valve.VR.InteractionSystem
         private void OnPlayerSmall()
         {
             transform.DOScale(smallScale, changeStateTime);
+            transform.DOMove(SpotWhenIsSmall.position, changeStateTime);
+            FindObjectOfType<SteamVR_PlayArea>().wireframeHeight = sizeWhenSmall;
             PlayClip(ScaleDownAudioClip);
         }
         
