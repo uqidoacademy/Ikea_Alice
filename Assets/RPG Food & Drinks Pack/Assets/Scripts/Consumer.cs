@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Consumer : Interactionable, IUsable, IGrabable
 {
-
+    public SizeOperation _currentOperationSize;
     public GameObject[] portions;
     [SerializeField] GameObject cork;
     int currentIndex;
@@ -97,8 +97,11 @@ public class Consumer : Interactionable, IUsable, IGrabable
 
         else if (currentIndex  == portions.Length)
         {
-            if (EventManager.PreBecomeBigger != null)
+            if (EventManager.PreBecomeBigger != null && _currentOperationSize == SizeOperation.Maximazer)
                 EventManager.PreBecomeBigger();
+
+            if (EventManager.PreBecomeSmaller != null && _currentOperationSize == SizeOperation.Minimazer)
+                EventManager.PreBecomeSmaller();
             IsEating = false;
             particleFX.Stop();
             Destroy(gameObject);
@@ -167,3 +170,9 @@ public class Consumer : Interactionable, IUsable, IGrabable
             
     }*/
 }
+public enum SizeOperation
+{
+    Maximazer = 0,
+    Minimazer = 1,
+}
+

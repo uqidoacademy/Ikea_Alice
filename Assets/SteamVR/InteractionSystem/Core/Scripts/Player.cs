@@ -44,11 +44,14 @@ namespace Valve.VR.InteractionSystem
 
 		public bool allowToggleTo2D = true;
 
+        public AudioClip ScaleUpAudioClip;
+        public AudioClip ScaleDownAudioClip;
 
-		//-------------------------------------------------
-		// Singleton instance of the Player. Only one can exist at a time.
-		//-------------------------------------------------
-		private static Player _instance;
+
+        //-------------------------------------------------
+        // Singleton instance of the Player. Only one can exist at a time.
+        //-------------------------------------------------
+        private static Player _instance;
 		public static Player instance
 		{
 			get
@@ -413,7 +416,7 @@ namespace Valve.VR.InteractionSystem
         private void OnPlayerBig()
         {
             transform.DOScale(bigScale, changeStateTime);
-
+            PlayClip(ScaleUpAudioClip);
         }
 
         /// <summary>
@@ -424,9 +427,17 @@ namespace Valve.VR.InteractionSystem
         private void OnPlayerSmall()
         {
             transform.DOScale(smallScale, changeStateTime);
+            PlayClip(ScaleDownAudioClip);
         }
         
         #endregion
+
+        private void PlayClip(AudioClip audio)
+        {
+            AudioSource source = GetComponent<AudioSource>();
+            source.clip = audio;
+            MainManager.Instance.ManagerAudio.playEffectOnce(source);
+        }
     }
 
 
