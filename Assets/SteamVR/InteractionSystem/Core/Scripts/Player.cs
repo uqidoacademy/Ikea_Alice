@@ -7,6 +7,7 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 
 namespace Valve.VR.InteractionSystem
 {
@@ -16,6 +17,10 @@ namespace Valve.VR.InteractionSystem
 	//-------------------------------------------------------------------------
 	public class Player : MonoBehaviour
 	{
+        public float bigScale = 3f;
+        public float smallScale = 0.3f;
+        public float changeStateTime = 2f;
+
 		[Tooltip( "Virtual transform corresponding to the meatspace tracking origin. Devices are tracked relative to this." )]
 		public Transform trackingOriginTransform;
 
@@ -255,6 +260,7 @@ namespace Valve.VR.InteractionSystem
 			{
 				trackingOriginTransform = this.transform;
 			}
+            SetUp();
 		}
 
 
@@ -394,5 +400,34 @@ namespace Valve.VR.InteractionSystem
 		{
 			//Do something appropriate here
 		}
-	}
+        #region Scale
+        public void SetUp()
+        {
+            EventManager.PreBecomeBigger += OnPlayerBig;
+            EventManager.PreBecomeSmaller += OnPlayerSmall;
+        }
+
+        /// <summary>
+        /// Funzione che ingrandisce lo stato
+        /// </summary>
+        private void OnPlayerBig()
+        {
+            transform.DOScale(bigScale, changeStateTime);
+
+        }
+
+        /// <summary>
+        /// Funzione che rimpicciolisce le cose
+        /// </summary>
+        /// 
+        
+        private void OnPlayerSmall()
+        {
+            transform.DOScale(smallScale, changeStateTime);
+        }
+        
+        #endregion
+    }
+
+
 }

@@ -21,7 +21,7 @@ public class Maximizer : Interactionable, IUsable, IGrabable {
     }
 
     public string[] GetCollisionTags () {
-        return new string[] { };
+        return new string[] { "Head"};
     }
 
     public new void OnUse () {
