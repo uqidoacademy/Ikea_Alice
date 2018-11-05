@@ -38,15 +38,16 @@ public class UnlockKey : Interactionable, IGrabable, IUsable {
 
     public override void OnUse(Collision collision = null)
     {
-        if (!handAttached)
-        {
-            return;
-        }
+        if (!handAttached) return;
+
         base.OnUse();
         //this.gameObject.transform.eulerAngles = new Vector3(0.0f, 0.0f, 0.0f);
         Debug.Log("Entrata la chiave");
-        keyInDoor = true;
         
+        keyInDoor = true;
+        if (EventManager.PreOpenDoor != null)
+            EventManager.PreOpenDoor();
+
     }
 
     public void OnUngrab(){

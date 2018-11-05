@@ -168,12 +168,14 @@ public class Interactionable : MonoBehaviour {
 
     private void attachedToHandEvent(Valve.VR.InteractionSystem.Hand hand)
     {
-        handAttached = false;
+        handAttached = true;
+        hand.TriggerHapticPulse(1000);
     }
 
     private void detachedFromHandEvent(Valve.VR.InteractionSystem.Hand hand)
     {
-        handAttached = true;
+        handAttached = false;
+        hand.TriggerHapticPulse(1000);
     }
 
 }
