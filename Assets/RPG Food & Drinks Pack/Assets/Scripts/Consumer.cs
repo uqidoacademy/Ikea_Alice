@@ -12,6 +12,7 @@ public class Consumer : Interactionable, IUsable, IGrabable
     [SerializeField] float interval = 1f;
     [SerializeField] AudioSource ConsumeAudioSource;
     [SerializeField] ParticleSystem particleFX;
+    
 
     private bool IsEating = false;
     
