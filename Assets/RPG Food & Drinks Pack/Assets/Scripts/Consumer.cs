@@ -16,7 +16,7 @@ public class Consumer : Interactionable, IUsable, IGrabable
 
 
     private bool IsEating = false;
-    bool handAttached = false;
+    
     
 
     /*
@@ -64,22 +64,10 @@ public class Consumer : Interactionable, IUsable, IGrabable
                 currentIndex = i;
         }
 
-        if (GetComponent<Valve.VR.InteractionSystem.Interactable>() != null)
-        {
-            GetComponent<Valve.VR.InteractionSystem.Interactable>().onAttachedToHand += attachedToHand;
-            GetComponent<Valve.VR.InteractionSystem.Interactable>().onDetachedFromHand += detachedFromHand;
-        }
+        
     }
 
-    private void attachedToHand(Valve.VR.InteractionSystem.Hand hand) 
-    {
-        handAttached = false;
-    }
 
-    private void detachedFromHand(Valve.VR.InteractionSystem.Hand hand)
-    {
-        handAttached = true;
-    }
 
     void Update()
     {

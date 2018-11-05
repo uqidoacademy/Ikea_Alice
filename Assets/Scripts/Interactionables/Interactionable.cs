@@ -156,6 +156,26 @@ public class Interactionable : MonoBehaviour {
         return false;
     }
     
+    public bool handAttached = false;
+    private void OnEnable()
+    {
+        if (GetComponent<Valve.VR.InteractionSystem.Interactable>() != null)
+        {
+            GetComponent<Valve.VR.InteractionSystem.Interactable>().onAttachedToHand += attachedToHandEvent;
+            GetComponent<Valve.VR.InteractionSystem.Interactable>().onDetachedFromHand += detachedFromHandEvent;
+        }
+    }
+
+    private void attachedToHandEvent(Valve.VR.InteractionSystem.Hand hand)
+    {
+        handAttached = false;
+    }
+
+    private void detachedFromHandEvent(Valve.VR.InteractionSystem.Hand hand)
+    {
+        handAttached = true;
+    }
+
 }
 
 public static class InteractionableExt
