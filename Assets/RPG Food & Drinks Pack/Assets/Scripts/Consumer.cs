@@ -11,8 +11,10 @@ public class Consumer : Interactionable, IUsable, IGrabable
     float lastChange;
     [SerializeField] float interval = 1f;
     [SerializeField] AudioSource ConsumeAudioSource;
+    [SerializeField] ParticleSystem particleFX;
 
     private bool IsEating = false;
+    //private bool siamoGrandi = false;
 
     /*
     private void OnCollisionStay(Collision other)
@@ -55,10 +57,12 @@ public class Consumer : Interactionable, IUsable, IGrabable
 
     void Update()
     {
-        if ( IsEating)
+        if ( IsEating  )
         {
-            Debug.Log("MANGIANDO");
-
+            if (cork != null)
+            {
+                cork.SetActive(false);
+            }
 
             if (Time.time - lastChange > interval)
             {
@@ -79,7 +83,7 @@ public class Consumer : Interactionable, IUsable, IGrabable
     {
         if (currentIndex < portions.Length)
             portions[currentIndex].SetActive(false);
-        
+        particleFX.Play();
         currentIndex++;
 
         MainManager.Instance.ManagerAudio.playEffectOnce(ConsumeAudioSource);
@@ -94,7 +98,8 @@ public class Consumer : Interactionable, IUsable, IGrabable
         {
             if (EventManager.PreBecomeBigger != null)
                 EventManager.PreBecomeBigger();
-
+            IsEating = false;
+            Destroy(gameObject);
             return;
         }
        portions[currentIndex].SetActive(true);
@@ -153,10 +158,10 @@ public class Consumer : Interactionable, IUsable, IGrabable
         this.SetMyParent(genitore);
         */
     }
-
-    void OnTriggerExit(Collider other)
+    /*
+    void OnCollisionExit(Collision other)
     {
-        if (other.gameObject.CompareTag("Head"))
-            IsEating = false;
-    }
+      //  if (other.gameObject.CompareTag("Head"))
+            
+    }*/
 }
