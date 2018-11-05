@@ -6,6 +6,7 @@ public class Consumer : Interactionable, IUsable, IGrabable
 {
 
     public GameObject[] portions;
+    [SerializeField] GameObject cork;
     int currentIndex;
     float lastChange;
     [SerializeField] float interval = 1f;
@@ -16,9 +17,12 @@ public class Consumer : Interactionable, IUsable, IGrabable
     private void OnCollisionStay(Collision other)
     {
         if (other.gameObject.CompareTag("Head"))
-        {
-            Debug.Log("MANGIANDO");
-            
+        {           
+            if(cork != null)
+            {
+                cork.SetActive(false);
+            }
+           
 
             if (Time.time - lastChange > interval)
             {
@@ -28,6 +32,8 @@ public class Consumer : Interactionable, IUsable, IGrabable
                 lastChange = Time.time;
             }
         }
+
+        
 
     }
     */
