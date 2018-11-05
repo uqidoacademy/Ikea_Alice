@@ -24,8 +24,8 @@ public class Maximizer : Interactionable, IUsable, IGrabable {
         return new string[] { "Head"};
     }
 
-    public new void OnUse () {
-        base.OnUse();
+    public new void OnUse (Collision collision) {
+        base.OnUse(collision);
         if (EventManager.PreBecomeBigger != null)
             EventManager.PreBecomeBigger ();
 
