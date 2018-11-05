@@ -1,5 +1,7 @@
 ﻿
 
+using UnityEngine;
+
 public interface IUsable
 {
     /// <summary>
@@ -17,7 +19,7 @@ public interface IUsable
     /// <summary>
     /// What has to be done onUse
     /// </summary>
-    void OnUse();
+    void OnUse(Collision collision);
 
     /// <summary>
     /// Get array of tags to interact with

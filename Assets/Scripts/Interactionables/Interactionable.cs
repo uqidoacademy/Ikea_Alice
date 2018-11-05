@@ -93,7 +93,7 @@ public class Interactionable : MonoBehaviour {
        // gameObject.layer = 10;
     }
 
-    public void OnUse()
+    public void OnUse(Collision collision)
     {
         if (SourceAudio != null)
         {
@@ -110,7 +110,7 @@ public class Interactionable : MonoBehaviour {
             IUsable usable = (this as IUsable);
             
             if (usable.CanBeUsed() && TagIncluded(collision.gameObject.tag, usable.GetCollisionTags())) {
-                usable.OnUse();
+                usable.OnUse(collision);
             }
         }
 
