@@ -11,10 +11,12 @@ public class Consumer : Interactionable, IUsable, IGrabable
     float lastChange;
     [SerializeField] float interval = 1f;
     [SerializeField] AudioSource ConsumeAudioSource;
-    [SerializeField] ParticleSystem particleFX;
-    
+    private ParticleSystem EatingFX;
+    public ParticleSystem EatingFXprefab;
+
 
     private bool IsEating = false;
+    bool handAttached = false;
     
 
     /*
@@ -45,8 +47,17 @@ public class Consumer : Interactionable, IUsable, IGrabable
 
     void Start()
     {
-        bool skipFirst = transform.childCount > 4;
+        if (EatingFXprefab != null)
+        {
+            EatingFX = Instantiate(EatingFXprefab, transform).GetComponent<ParticleSystem>();
+            EatingFX.transform.SetSiblingIndex(0);
+        }
+
+        bool skipFirst = transform.childCount == 5;
+        bool skipSecond = transform.childCount == 6;
         portions = new GameObject[skipFirst ? transform.childCount-1 : transform.childCount];
+        portions = new GameObject[skipSecond ? transform.childCount - 2 : transform.childCount -1];
+
         for (int i = 0; i < portions.Length; i++)
         {
            
@@ -54,6 +65,24 @@ public class Consumer : Interactionable, IUsable, IGrabable
             if (portions[i].activeInHierarchy)
                 currentIndex = i;
         }
+
+        if (GetComponent<Valve.VR.InteractionSystem.Interactable>() != null)
+        {
+            GetComponent<Valve.VR.InteractionSystem.Interactable>().onAttachedToHand += attachedToHand;
+            GetComponent<Valve.VR.InteractionSystem.Interactable>().onDetachedFromHand += detachedFromHand;
+        }
+    }
+
+    private void attachedToHand(Valve.VR.InteractionSystem.Hand hand) 
+    {
+        handAttached = true;
+        hand.TriggerHapticPulse(1000);
+    }
+
+    private void detachedFromHand(Valve.VR.InteractionSystem.Hand hand)
+    {
+        handAttached = false;
+        hand.TriggerHapticPulse(1000);
     }
 
     void Update()
@@ -81,8 +110,8 @@ public class Consumer : Interactionable, IUsable, IGrabable
 
     void Consume()
     {
-
-        particleFX.Play();
+        if(EatingFX)
+             EatingFX.Play();
 
         if (currentIndex < portions.Length)
             portions[currentIndex].SetActive(false);
@@ -109,7 +138,8 @@ public class Consumer : Interactionable, IUsable, IGrabable
                 EventManager.PreBecomeSmaller();
             
             IsEating = false;
-            particleFX.Stop();
+            if (EatingFX)
+                EatingFX.Stop();
             Destroy(gameObject);
             return;
         }
@@ -138,7 +168,7 @@ public class Consumer : Interactionable, IUsable, IGrabable
 
     public override void OnUse(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Head"))
+        if (collision.gameObject.CompareTag("Head") && handAttached)
         {
             base.OnUse(collision);
             IsEating = true;
