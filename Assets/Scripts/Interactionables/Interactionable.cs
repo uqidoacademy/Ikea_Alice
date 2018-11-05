@@ -110,7 +110,9 @@ public class Interactionable : MonoBehaviour {
             IUsable usable = (this as IUsable);
             
             if (usable.CanBeUsed() && TagIncluded(collision.gameObject.tag, usable.GetCollisionTags())) {
+                
                 usable.OnUse(collision);
+                
             }
         }
 

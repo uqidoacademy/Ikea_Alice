@@ -14,7 +14,7 @@ public class Consumer : Interactionable, IUsable, IGrabable
     [SerializeField] ParticleSystem particleFX;
 
     private bool IsEating = false;
-    //private bool siamoGrandi = false;
+    
 
     /*
     private void OnCollisionStay(Collision other)
@@ -57,7 +57,7 @@ public class Consumer : Interactionable, IUsable, IGrabable
 
     void Update()
     {
-        if ( IsEating  )
+        if (IsEating)
         {
             if (cork != null)
             {
@@ -83,6 +83,7 @@ public class Consumer : Interactionable, IUsable, IGrabable
     {
         if (currentIndex < portions.Length)
             portions[currentIndex].SetActive(false);
+
         particleFX.Play();
         currentIndex++;
 
@@ -99,6 +100,7 @@ public class Consumer : Interactionable, IUsable, IGrabable
             if (EventManager.PreBecomeBigger != null)
                 EventManager.PreBecomeBigger();
             IsEating = false;
+            particleFX.Stop();
             Destroy(gameObject);
             return;
         }
