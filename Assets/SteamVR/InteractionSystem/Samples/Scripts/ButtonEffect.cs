@@ -4,12 +4,14 @@ using UnityEngine;
 using System.Collections;
 using UnityEngine.SceneManagement;
 using DG.Tweening;
+using UnityEngine.Playables;
 
 namespace Valve.VR.InteractionSystem.Sample
 {
     public class ButtonEffect : MonoBehaviour
     {
         public GameObject Player;
+        public GameObject Timeline;
         [SerializeField] Transform PositionToSpawnPlayer;
         [SerializeField] float TimeTospawn = 2f;
         public void OnButtonDown(Hand fromHand)
@@ -39,6 +41,7 @@ namespace Valve.VR.InteractionSystem.Sample
             var fader = camera.GetComponent<FadeScreen>();
             //fader.FadeEffectNow();
             Player.transform.DOMove(PositionToSpawnPlayer.position, TimeTospawn);
+            Timeline.GetComponent<PlayableDirector>().Play();
         }
     }
 }
