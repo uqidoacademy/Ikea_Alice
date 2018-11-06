@@ -53,13 +53,15 @@ public class UnlockKey : Interactionable, IGrabable, IUsable {
     public void OnUngrab(){
     }
 
-    void OnEnable()
+    new void OnEnable()
     {
-        GetComponent<Valve.VR.InteractionSystem.Interactable>().onAttachedToHand += OnGrab;
+        base.OnEnable();
+
     }
     // Use this for initialization
     void Start () {
-		
+		        Valve.VR.InteractionSystem.Interactable interactable = GetComponent<Valve.VR.InteractionSystem.Interactable>();
+        if(interactable != null) interactable.onAttachedToHand += OnGrab;
 	}
 	
 	// Update is called once per frame
@@ -87,6 +89,7 @@ public class UnlockKey : Interactionable, IGrabable, IUsable {
 
     void OnDisable()
     {
-        GetComponent<Valve.VR.InteractionSystem.Interactable>().onAttachedToHand -= OnGrab;
+        Valve.VR.InteractionSystem.Interactable interactable = GetComponent<Valve.VR.InteractionSystem.Interactable>();
+        if(interactable != null) interactable.onAttachedToHand -= OnGrab;
     }
 }
