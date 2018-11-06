@@ -11,18 +11,22 @@ public class FadeScreen : MonoBehaviour {
     
     public float AnimationDuration = 4;
 
-    public void FadeEffectNow()
+    public void FadeEffectNow(float duration = -1)
     {
+        float animDuration = duration == -1 ? AnimationDuration : duration;
+
+
         GameObject planeInstance = GetPlaneInFront();
         Material material = planeInstance.GetComponent<Renderer>().material;
         material.color = Color.clear;
 
         Sequence seq = DOTween.Sequence();
-        seq.Append(material.DOColor(Color.black, AnimationDuration / 3));
-        seq.AppendInterval(AnimationDuration / 3);
+        seq.Append(material.DOColor(Color.black, animDuration / 3));
+        seq.AppendInterval(animDuration / 3);
         seq.OnComplete(() =>
         {
-            material.DOColor(Color.clear, AnimationDuration / 3);
+            material.DOColor(Color.clear, animDuration / 3);
+
         });
     }
 
