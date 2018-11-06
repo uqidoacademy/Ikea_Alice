@@ -1059,6 +1059,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 202a6e24b48d1684398409c47161adcb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bigScale: 3
+  smallScale: 0.3
+  changeStateTime: 2
+  sizeWhenSmall: 1.2
+  SpotWhenIsSmall: {fileID: 0}
   trackingOriginTransform: {fileID: 447954}
   hmdTransforms:
   - {fileID: 429506}
@@ -1072,6 +1077,8 @@ MonoBehaviour:
   rig2DFallback: {fileID: 105336}
   audioListener: {fileID: 471722}
   allowToggleTo2D: 1
+  ScaleUpAudioClip: {fileID: 0}
+  ScaleDownAudioClip: {fileID: 0}
 --- !u!114 &11476190
 MonoBehaviour:
   m_ObjectHideFlags: 1

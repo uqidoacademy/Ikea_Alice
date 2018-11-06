@@ -115,7 +115,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4955245045175760}
-  - component: {fileID: 114580340327705180}
   m_Layer: 0
   m_Name: Subs02
   m_TagString: Untagged
@@ -186,6 +185,7 @@ GameObject:
   - component: {fileID: 4166018210267530}
   - component: {fileID: 320526138140961098}
   - component: {fileID: 114074506498529684}
+  - component: {fileID: 114580945169305884}
   m_Layer: 0
   m_Name: Scena02
   m_TagString: Untagged
@@ -995,18 +995,17 @@ MonoBehaviour:
   jumpNumber: 100
   destinationPos: {fileID: 4533194839289470}
   moveTime: 18
---- !u!114 &114580340327705180
+--- !u!114 &114580945169305884
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1265557376712422}
+  m_GameObject: {fileID: 1865978762901276}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: dd4c24a95bd3e5b439a3b14decb02054, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mainCam: {fileID: 0}
 --- !u!114 &114692958637627778
 MonoBehaviour:
   m_ObjectHideFlags: 1
