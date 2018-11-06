@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Valve.VR.InteractionSystem;
 
 public class Maximizer : Interactionable, IUsable, IGrabable {
 
@@ -43,4 +44,8 @@ public class Maximizer : Interactionable, IUsable, IGrabable {
         this.SetMyParent (genitore);
     }
 
+    public void OnGrab(Hand hand)
+    {
+        throw new System.NotImplementedException();
+    }
 }

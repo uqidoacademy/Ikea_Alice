@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Valve.VR.InteractionSystem;
 
 public class Minimizer : Interactionable, IUsable, IGrabable {
 
@@ -41,5 +42,10 @@ public class Minimizer : Interactionable, IUsable, IGrabable {
     public void OnUngrab () {
         this.EnableGravityAndRotation ();
         this.SetMyParent (genitore);
+    }
+
+    public void OnGrab(Hand hand)
+    {
+        throw new System.NotImplementedException();
     }
 }
