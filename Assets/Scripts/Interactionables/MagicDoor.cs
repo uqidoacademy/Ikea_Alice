@@ -31,9 +31,9 @@ public class MagicDoor : Interactionable, IUsable {
 
     public override void OnUse(Collision collision = null)
     {
-        base.OnUse();
-        if (EventManager.PreOpenDoor != null)
-            EventManager.PreOpenDoor();
+            base.OnUse();
+            
+        
 
     }
 

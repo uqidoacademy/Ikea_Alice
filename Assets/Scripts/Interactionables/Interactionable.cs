@@ -156,14 +156,38 @@ public class Interactionable : MonoBehaviour {
         return false;
     }
     
+    public bool handAttached = false;
+    protected void OnEnable()
+    {
+        Valve.VR.InteractionSystem.Interactable interactable = GetComponent<Valve.VR.InteractionSystem.Interactable>();
+        if (interactable != null)
+        {
+            interactable.onAttachedToHand += attachedToHandEvent;
+            interactable.onDetachedFromHand += detachedFromHandEvent;
+        }
+    }
+
+    private void attachedToHandEvent(Valve.VR.InteractionSystem.Hand hand)
+    {
+        handAttached = true;
+        hand.TriggerHapticPulse(1000);
+    }
+
+    private void detachedFromHandEvent(Valve.VR.InteractionSystem.Hand hand)
+    {
+        handAttached = false;
+        hand.TriggerHapticPulse(1000);
+    }
+
 }
 
 public static class InteractionableExt
 {
     public static void RemoveGravityAndRotation(this Interactionable _grabbed)
     {
-        _grabbed.GetComponent<Rigidbody>().useGravity = false;
-		_grabbed.GetComponent<Rigidbody>().freezeRotation = true;
+        _grabbed.gameObject.transform.DOLocalRotate(Vector3.forward, 1f);
+       // _grabbed.GetComponent<Rigidbody>().useGravity = false;
+	//	_grabbed.GetComponent<Rigidbody>().freezeRotation = true;
     }
 
     public static void EnableGravityAndRotation(this Interactionable _grabbed)

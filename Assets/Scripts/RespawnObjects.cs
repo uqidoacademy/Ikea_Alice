@@ -21,7 +21,7 @@ public class RespawnObjects : MonoBehaviour {
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.tag == "Food")
+        if (collision.gameObject.tag == "Food" || collision.gameObject.tag == "Key")
         {
             collision.gameObject.transform.DOMove(collision.gameObject.GetComponent<SetInitialParam>().InitialPosition, respawnTime);
             collision.gameObject.transform.DORotate(collision.gameObject.GetComponent<SetInitialParam>().InitialRotation, respawnTime);
