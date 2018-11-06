@@ -52,6 +52,7 @@ GameObject:
   - component: {fileID: 4976169746559248}
   - component: {fileID: 20850992555217214}
   - component: {fileID: 114557146048661580}
+  - component: {fileID: 114596161740685668}
   m_Layer: 0
   m_Name: FallbackObjects
   m_TagString: Untagged
@@ -88,6 +89,7 @@ GameObject:
   - component: {fileID: 114590504641465604}
   - component: {fileID: 92418195271376846}
   - component: {fileID: 124365048828493226}
+  - component: {fileID: 114298572256838894}
   m_Layer: 0
   m_Name: VRCamera
   m_TagString: MainCamera
@@ -354,6 +356,7 @@ GameObject:
   - component: {fileID: 23368924309643302}
   - component: {fileID: 114094997046734764}
   - component: {fileID: 82777210153077426}
+  - component: {fileID: 114674581163759352}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -723,7 +726,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1815249072880698}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.006, y: -0.821, z: 5.17}
+  m_LocalPosition: {x: 5.457, y: -0.89, z: -28.342}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4681078170721584}
@@ -1288,6 +1291,17 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: Valve.VR.SteamVR_Behaviour_PoseEvent, Assembly-CSharp, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
+--- !u!114 &114298572256838894
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1250879486802400}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: afc68767fd1a1664fae04240329d62de, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114306051719951312
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1462,6 +1476,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ad1e469d4e3e04489f9a36419f1a4f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114596161740685668
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1132722789187006}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: afc68767fd1a1664fae04240329d62de, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114616283106372030
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1480,6 +1505,20 @@ MonoBehaviour:
   m_InputActionsPerSecond: 10
   m_RepeatDelay: 0.5
   m_ForceModuleActive: 0
+--- !u!114 &114674581163759352
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1815249072880698}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c3520b0e947ddb74fae3e4f84b6f9103, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  quadToFade: {fileID: 1430480024216502, guid: f1320dc985bbf0f4b90170210ff4d77d, type: 2}
+  teleportLocationRoom: {fileID: 0}
+  teleportLocationSmall: {fileID: 0}
 --- !u!114 &114676736773951028
 MonoBehaviour:
   m_ObjectHideFlags: 1
