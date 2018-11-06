@@ -26,14 +26,14 @@ public class UnlockKey : Interactionable, IGrabable, IUsable {
         return new string[] { "door" };
     }
 
-    public void  OnGrab(GameObject ioTiGrabbo)
+    public void  OnGrab(Valve.VR.InteractionSystem.Hand hand)
     {
         this.RemoveGravityAndRotation();
-        this.SetMyParent(ioTiGrabbo.transform);
+        //this.SetMyParent(ioTiGrabbo.transform);
         //this.AnimateSequence(ioTiGrabbo.secondHand.transform);
         //this.SetMyParent(ioTiGrabbo.secondHand.transform);
-        this.FreezeAllConstraints();
-        if(EventManager.OnKeyGrabbed != null) EventManager.OnKeyGrabbed(true);
+        //this.FreezeAllConstraints();
+        //if(EventManager.OnKeyGrabbed != null) EventManager.OnKeyGrabbed(true);
     }
 
     public override void OnUse(Collision collision = null)
@@ -53,7 +53,10 @@ public class UnlockKey : Interactionable, IGrabable, IUsable {
     public void OnUngrab(){
     }
 
-
+    void OnEnable()
+    {
+        GetComponent<Valve.VR.InteractionSystem.Interactable>().onAttachedToHand += OnGrab;
+    }
     // Use this for initialization
     void Start () {
 		
@@ -80,5 +83,10 @@ public class UnlockKey : Interactionable, IGrabable, IUsable {
     {
         keyInDoor = false;
         
+    }
+
+    void OnDisable()
+    {
+        GetComponent<Valve.VR.InteractionSystem.Interactable>().onAttachedToHand -= OnGrab;
     }
 }
