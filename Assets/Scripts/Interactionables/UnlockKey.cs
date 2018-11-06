@@ -52,12 +52,7 @@ public class UnlockKey : Interactionable, IGrabable, IUsable {
 
     public void OnUngrab(){
     }
-
-    new void OnEnable()
-    {
-        base.OnEnable();
-
-    }
+    
     // Use this for initialization
     void Start () {
 		        Valve.VR.InteractionSystem.Interactable interactable = GetComponent<Valve.VR.InteractionSystem.Interactable>();
