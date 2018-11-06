@@ -12,6 +12,8 @@ TagManager:
   - Food
   - RightHand
   - Head
+  - Key
+  - FollowHead
   layers:
   - Default
   - TransparentFX
