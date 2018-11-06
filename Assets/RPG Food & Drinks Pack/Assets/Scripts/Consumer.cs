@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Valve.VR.InteractionSystem;
 
 public class Consumer : Interactionable, IUsable, IGrabable
 {
@@ -183,12 +184,17 @@ public class Consumer : Interactionable, IUsable, IGrabable
         this.SetMyParent(genitore);
         */
     }
-    /*
-    void OnCollisionExit(Collision other)
+
+    public void OnGrab(Hand hand)
     {
-      //  if (other.gameObject.CompareTag("Head"))
-            
-    }*/
+        throw new System.NotImplementedException();
+    }
+    /*
+void OnCollisionExit(Collision other)
+{
+ //  if (other.gameObject.CompareTag("Head"))
+
+}*/
 }
 public enum SizeOperation
 {
