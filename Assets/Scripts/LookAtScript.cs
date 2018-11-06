@@ -5,8 +5,6 @@ using UnityEngine;
 public class LookAtScript : MonoBehaviour {
 
 	// Update is called once per frame
-	Transform camera;
-
 	Camera mainCam;
 
     void OnEnable() {
@@ -25,6 +23,6 @@ public class LookAtScript : MonoBehaviour {
      void Update()
      {
          // Rotate the camera every frame so it keeps looking at the target
-        transform.LookAt(mainCam.transform, -Vector3.up);
+        transform.GetChild(0).LookAt(mainCam.transform, -Vector3.up);
      }
 }

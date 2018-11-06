@@ -40,6 +40,7 @@ GameObject:
   - component: {fileID: 4281234558583180}
   - component: {fileID: 320855976740540796}
   - component: {fileID: 95270316351921602}
+  - component: {fileID: 114057691267689426}
   m_Layer: 0
   m_Name: Scena3GattoBiscotto
   m_TagString: Untagged
@@ -91,7 +92,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4248317034668820}
-  - component: {fileID: 114412103627417612}
   m_Layer: 0
   m_Name: Sub03
   m_TagString: Untagged
@@ -696,18 +696,17 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &114412103627417612
+--- !u!114 &114057691267689426
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1287986963792590}
+  m_GameObject: {fileID: 1211766960336038}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: dd4c24a95bd3e5b439a3b14decb02054, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mainCam: {fileID: 0}
 --- !u!114 &114729794689590398
 MonoBehaviour:
   m_ObjectHideFlags: 1
