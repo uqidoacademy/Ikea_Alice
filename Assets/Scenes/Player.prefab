@@ -390,6 +390,7 @@ GameObject:
   - component: {fileID: 114094997046734764}
   - component: {fileID: 82777210153077426}
   - component: {fileID: 114674581163759352}
+  - component: {fileID: 114229396177694536}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -1349,7 +1350,7 @@ MonoBehaviour:
   showDebugInteractables: 0
 --- !u!114 &114229396177694536
 MonoBehaviour:
-  m_ObjectHideFlags: 1
+  m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1815249072880698}
@@ -1642,9 +1643,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3520b0e947ddb74fae3e4f84b6f9103, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  quadToFade: {fileID: 1430480024216502, guid: f1320dc985bbf0f4b90170210ff4d77d, type: 2}
-  teleportLocationRoom: {fileID: 0}
-  teleportLocationSmall: {fileID: 0}
+  AnimationDuration: 4
 --- !u!114 &114676736773951028
 MonoBehaviour:
   m_ObjectHideFlags: 1

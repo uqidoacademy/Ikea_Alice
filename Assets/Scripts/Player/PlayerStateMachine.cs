@@ -53,7 +53,9 @@ public class PlayerStateMachine: MonoBehaviour
     /// </summary>
     private void StateChanged(PlayerState oldState)
     {
-        GameObject.FindGameObjectWithTag("FollowHead").GetComponent<FadeScreen>().FadeEffectNow();
+        var camera = GameObject.FindGameObjectWithTag("FollowHead");
+        var fader = camera.GetComponent<FadeScreen>();
+        fader.FadeEffectNow();
 
         switch (CurrentState)
         {
