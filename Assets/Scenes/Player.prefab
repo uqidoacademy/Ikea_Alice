@@ -355,7 +355,6 @@ GameObject:
   - component: {fileID: 23368924309643302}
   - component: {fileID: 114094997046734764}
   - component: {fileID: 82777210153077426}
-  - component: {fileID: 114237170745241956}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -1193,14 +1192,14 @@ MonoBehaviour:
   size: 0
   color: {r: 0, g: 1, b: 1, a: 1}
   vertices:
-  - {x: 1.05, y: 0.01, z: -0.7500001}
-  - {x: -1.05, y: 0.01, z: -0.7500001}
-  - {x: -1.05, y: 0.01, z: 0.7500001}
-  - {x: 1.05, y: 0.01, z: 0.7500001}
-  - {x: 1.1999999, y: 0.01, z: -0.9000001}
-  - {x: -1.1999999, y: 0.01, z: -0.9000001}
-  - {x: -1.1999999, y: 0.01, z: 0.9000001}
-  - {x: 1.1999999, y: 0.01, z: 0.9000001}
+  - {x: 1.0500002, y: 0.01, z: -0.8000003}
+  - {x: -1.0500002, y: 0.01, z: -0.8000003}
+  - {x: -1.0500002, y: 0.01, z: 0.8000003}
+  - {x: 1.0500002, y: 0.01, z: 0.8000003}
+  - {x: 1.2000002, y: 0.01, z: -0.9500003}
+  - {x: -1.2000002, y: 0.01, z: -0.9500003}
+  - {x: -1.2000002, y: 0.01, z: 0.9500003}
+  - {x: 1.2000002, y: 0.01, z: 0.9500003}
 --- !u!114 &114098127205894988
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1256,18 +1255,6 @@ MonoBehaviour:
   showDebugText: 0
   spewDebugText: 0
   showDebugInteractables: 0
---- !u!114 &114237170745241956
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1815249072880698}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c3520b0e947ddb74fae3e4f84b6f9103, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  AnimationDuration: 2
 --- !u!114 &114291475037735266
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1396,7 +1383,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3520b0e947ddb74fae3e4f84b6f9103, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AnimationDuration: 2
+  AnimationDuration: 4
 --- !u!114 &114482941435837590
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -36,7 +36,7 @@ public class FadeScreen : MonoBehaviour {
         plane.transform.position = transform.position;
         plane.transform.rotation = transform.rotation;
         plane.transform.localScale = new Vector3(2, 2, 2);
-        plane.transform.Translate(0.0f, 0.0f, 0.5f);
+        plane.transform.Translate(0.0f, 0.0f, 0.1f);
         //plane.transform.LookAt(CameraTransform.position);
 
         // set material
