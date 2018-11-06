@@ -39,7 +39,7 @@ namespace Valve.VR.InteractionSystem.Sample
         {
             var camera = GameObject.FindGameObjectWithTag("FollowHead");
             var fader = camera.GetComponent<FadeScreen>();
-            //fader.FadeEffectNow();
+            fader.FadeEffectNow();
             Player.transform.DOMove(PositionToSpawnPlayer.position, TimeTospawn);
             Timeline.GetComponent<PlayableDirector>().Play();
         }

@@ -1309,7 +1309,7 @@ GameObject:
   - component: {fileID: 320449427148439568}
   - component: {fileID: 95141896098204670}
   m_Layer: 0
-  m_Name: Scena01ToStart
+  m_Name: Scena00ToStart
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3582,6 +3582,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Player: {fileID: 0}
+  Timeline: {fileID: 0}
   PositionToSpawnPlayer: {fileID: 0}
   TimeTospawn: 2
 --- !u!114 &114398037629365118
@@ -3616,7 +3617,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd4c24a95bd3e5b439a3b14decb02054, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mainCam: {fileID: 0}
 --- !u!114 &114503564309266122
 MonoBehaviour:
   m_ObjectHideFlags: 1
