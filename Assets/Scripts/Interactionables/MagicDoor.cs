@@ -9,6 +9,7 @@ public class MagicDoor : Interactionable, IUsable {
 
     [SerializeField] float angoloAperturaPorta = 90.0f;
     [SerializeField] float tempoAperturaPorta = 3f;
+    [SerializeField] float movimentoAperturaPorta = -0.25f;
 
     public bool CanBeUsed()
     {
@@ -43,13 +44,18 @@ public class MagicDoor : Interactionable, IUsable {
 
     void OpenDoor()
     {
-        if(hingeDoor != null)
-        hingeDoor.transform.DORotate(new Vector3(0, angoloAperturaPorta, 0), tempoAperturaPorta);
-        Debug.Log("Open door");
-        // after rotation has been done trigger event
-        MainManager.Instance.ManagerAudio.PlayWonderland();
-        if (EventManager.PostOpenDoor != null) EventManager.PostOpenDoor();
-    }
+    /*if(hingeDoor != null)
+    hingeDoor.transform.DORotate(new Vector3(0, angoloAperturaPorta, 0), tempoAperturaPorta);
+    Debug.Log("Open door");
+    // after rotation has been done trigger event
+    MainManager.Instance.ManagerAudio.PlayWonderland();
+    if (EventManager.PostOpenDoor != null) EventManager.PostOpenDoor();*/
+    if (hingeDoor != null)
+      hingeDoor.transform.DOMove(new Vector3(movimentoAperturaPorta,0,0), tempoAperturaPorta);
+    MainManager.Instance.ManagerAudio.PlayWonderland();
+    if (EventManager.PostOpenDoor != null)
+      EventManager.PostOpenDoor();
+  }
 	
 	// Update is called once per frame
 	void Update () {
