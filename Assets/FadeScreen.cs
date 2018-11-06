@@ -11,7 +11,7 @@ public class FadeScreen : MonoBehaviour {
     
     public float AnimationDuration = 4;
 
-    void FadeEffectNow()
+    public void FadeEffectNow()
     {
         GameObject planeInstance = GetPlaneInFront();
         Material material = planeInstance.GetComponent<Renderer>().material;

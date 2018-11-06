@@ -53,7 +53,8 @@ public class PlayerStateMachine: MonoBehaviour
     /// </summary>
     private void StateChanged(PlayerState oldState)
     {
-        
+        GameObject.FindGameObjectWithTag("MainCamera").GetComponent<FadeScreen>().FadeEffectNow();
+
         switch (CurrentState)
         {
             case PlayerState.small:
