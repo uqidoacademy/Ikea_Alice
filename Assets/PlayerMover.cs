@@ -18,7 +18,7 @@ public class PlayerMover : MonoBehaviour {
         var camera = GameObject.FindGameObjectWithTag("FollowHead");
         var fader = camera.GetComponent<FadeScreen>();
         fader.FadeEffectNow();
-        MoveToDestination(teleportLocationRoom.transform, 1);
+        MoveToDestination(teleportLocationRoom.transform, 1.5f);
 
 
     }
