@@ -34,6 +34,7 @@ public class PlayerStateMachine: MonoBehaviour
         get { return _currentState; }
         set
         {
+            Debug.Log("HOLAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
             if (_currentState != value)
             {
                 PlayerState oldState = _currentState;
@@ -53,10 +54,6 @@ public class PlayerStateMachine: MonoBehaviour
     /// </summary>
     private void StateChanged(PlayerState oldState)
     {
-        var camera = GameObject.FindGameObjectWithTag("FollowHead");
-        var fader = camera.GetComponent<FadeScreen>();
-        fader.FadeEffectNow();
-
         switch (CurrentState)
         {
             case PlayerState.small:
@@ -189,6 +186,7 @@ public class PlayerStateMachine: MonoBehaviour
     }
 
     private void Start() {
+        Debug.Log("MIAMIIIIIIII");
         SetUp();
     }
 
