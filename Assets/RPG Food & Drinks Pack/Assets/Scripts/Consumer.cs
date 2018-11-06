@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Valve.VR.InteractionSystem;
 
 public class Consumer : Interactionable, IUsable, IGrabable
 {
@@ -54,12 +55,13 @@ public class Consumer : Interactionable, IUsable, IGrabable
         }
 
         bool skipFirst = transform.childCount > 4;
-        portions = new GameObject[skipFirst ? transform.childCount-1 : transform.childCount];
+
+        portions = new GameObject[skipFirst ? transform.childCount-(transform.childCount - 4) : transform.childCount];
 
         for (int i = 0; i < portions.Length; i++)
         {
            
-            portions[i] = transform.GetChild(skipFirst ? i + 1 : i).gameObject;
+            portions[i] = transform.GetChild(skipFirst ? i + (transform.childCount - 4) : i).gameObject;
             if (portions[i].activeInHierarchy)
                 currentIndex = i;
         }
@@ -183,12 +185,17 @@ public class Consumer : Interactionable, IUsable, IGrabable
         this.SetMyParent(genitore);
         */
     }
-    /*
-    void OnCollisionExit(Collision other)
+
+    public void OnGrab(Hand hand)
     {
-      //  if (other.gameObject.CompareTag("Head"))
-            
-    }*/
+        throw new System.NotImplementedException();
+    }
+    /*
+void OnCollisionExit(Collision other)
+{
+ //  if (other.gameObject.CompareTag("Head"))
+
+}*/
 }
 public enum SizeOperation
 {
