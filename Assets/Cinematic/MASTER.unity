@@ -510,6 +510,23 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4985249760713528, guid: 500ae0ce6d19f554e8adfb905245f988,
     type: 2}
   m_PrefabInternal: {fileID: 55719666}
+--- !u!1 &55719668 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1608847894484652, guid: 500ae0ce6d19f554e8adfb905245f988,
+    type: 2}
+  m_PrefabInternal: {fileID: 55719666}
+--- !u!114 &55719669
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 55719668}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b2b0cb95c059e24c88f82451fcf2860, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  respawnTime: 2
 --- !u!1 &59334919
 GameObject:
   m_ObjectHideFlags: 0
@@ -2527,7 +2544,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_text: Mangia il dolcetto, il fattaccino l'ha cucinato per te!
+  m_text: Il fattaccino l'ha cucinato per te!
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -2603,11 +2620,11 @@ MonoBehaviour:
     lineCount: 2
     pageCount: 1
     materialCount: 1
-  m_havePropertiesChanged: 0
+  m_havePropertiesChanged: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
-  m_isInputParsingRequired: 0
+  m_isInputParsingRequired: 1
   m_inputSource: 0
   m_hasFontAssetChanged: 0
   m_renderer: {fileID: 653301947}
@@ -3093,6 +3110,11 @@ Prefab:
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e173efb247fd33448a4570dad3abfa44, type: 2}
   m_IsPrefabAsset: 0
+--- !u!82 &754631796 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 82179558037535424, guid: e173efb247fd33448a4570dad3abfa44,
+    type: 2}
+  m_PrefabInternal: {fileID: 754631795}
 --- !u!4 &754631797 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4995544159676596, guid: e173efb247fd33448a4570dad3abfa44,
@@ -3652,6 +3674,7 @@ Prefab:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 114064121861872650, guid: d573ff6d23a33804fb7f37b6cc87e3aa, type: 2}
+    - {fileID: 114815677851374206, guid: d573ff6d23a33804fb7f37b6cc87e3aa, type: 2}
   m_SourcePrefab: {fileID: 100100000, guid: d573ff6d23a33804fb7f37b6cc87e3aa, type: 2}
   m_IsPrefabAsset: 0
 --- !u!4 &881355172 stripped
@@ -4564,7 +4587,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_text: Manchi solo te alla festa! Vieni qui vicino!
+  m_text: Vieni qui vicino a me e mangia il dolcetto!
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -9618,7 +9641,7 @@ Prefab:
         type: 2}
       propertyPath: AudioSourceWonderland
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 754631796}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a0af8e27e1a35814b9017eb43c39adee, type: 2}
   m_IsPrefabAsset: 0
@@ -20632,6 +20655,26 @@ Prefab:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114598620783996626, guid: df2d27b297598a340912326dd7b7346b,
+        type: 2}
+      propertyPath: m_text
+      value: "E la piu speciale di tutte \xE8 proprio a casa tua!\r"
+      objectReference: {fileID: 0}
+    - target: {fileID: 114598620783996626, guid: df2d27b297598a340912326dd7b7346b,
+        type: 2}
+      propertyPath: m_textInfo.characterCount
+      value: 49
+      objectReference: {fileID: 0}
+    - target: {fileID: 114598620783996626, guid: df2d27b297598a340912326dd7b7346b,
+        type: 2}
+      propertyPath: m_textInfo.spaceCount
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 114598620783996626, guid: df2d27b297598a340912326dd7b7346b,
+        type: 2}
+      propertyPath: m_textInfo.wordCount
+      value: 11
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: df2d27b297598a340912326dd7b7346b, type: 2}
   m_IsPrefabAsset: 0
@@ -21110,6 +21153,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1789884564}
+  - component: {fileID: 1789884565}
   m_Layer: 0
   m_Name: Trunk
   m_TagString: Untagged
@@ -21131,6 +21175,18 @@ Transform:
   m_Father: {fileID: 1333271138}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1789884565
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1789884563}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b2b0cb95c059e24c88f82451fcf2860, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  respawnTime: 2
 --- !u!1 &1789936513
 GameObject:
   m_ObjectHideFlags: 0
@@ -21953,7 +22009,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_text: Guarda tutti vanno alla festa, non mancare!
+  m_text: Guarda, tutti vanno alla festa, non mancare!
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -22029,11 +22085,11 @@ MonoBehaviour:
     lineCount: 2
     pageCount: 1
     materialCount: 1
-  m_havePropertiesChanged: 0
+  m_havePropertiesChanged: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
-  m_isInputParsingRequired: 0
+  m_isInputParsingRequired: 1
   m_inputSource: 0
   m_hasFontAssetChanged: 0
   m_renderer: {fileID: 1853380979}
