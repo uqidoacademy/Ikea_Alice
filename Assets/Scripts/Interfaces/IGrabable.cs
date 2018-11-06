@@ -12,7 +12,7 @@ public interface IGrabable
     /// <summary>
     /// What has to be done on grab
     /// </summary>
-    void OnGrab(GameObject ioTiGrabbo);
+    void OnGrab(Valve.VR.InteractionSystem.Hand hand);
 
     /// <summary>
     /// What has to be done on ungrab
