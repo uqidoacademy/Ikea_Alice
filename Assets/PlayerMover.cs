@@ -15,9 +15,20 @@ public class PlayerMover : MonoBehaviour {
 
     public void goToRoomSpawn()
     {
-        GameObject.FindGameObjectWithTag("MainCamera").GetComponent<FadeScreen>().FadeEffectNow();
-        transform.DOMove(teleportLocationRoom.transform.position, 4);
-        transform.DORotate(teleportLocationRoom.transform.rotation.eulerAngles, 4, RotateMode.Fast);
+        var camera = GameObject.FindGameObjectWithTag("FollowHead");
+        var fader = camera.GetComponent<FadeScreen>();
+        fader.FadeEffectNow();
+        MoveToDestination(teleportLocationRoom.transform, 1);
+
+
+    }
+
+    private void MoveToDestination(Transform destination, float waitTime)
+    {
+        Sequence seq = DOTween.Sequence();
+        seq.AppendInterval(waitTime);
+        seq.Append(transform.DOMove(destination.position, 0));
+        seq.Append(transform.DORotate(destination.rotation.eulerAngles, 0));
     }
 
     // Use this for initialization

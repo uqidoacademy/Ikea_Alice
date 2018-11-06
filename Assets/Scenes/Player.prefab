@@ -235,7 +235,7 @@ GameObject:
   - component: {fileID: 114459551542156574}
   m_Layer: 0
   m_Name: FollowHead
-  m_TagString: Untagged
+  m_TagString: FollowHead
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -388,7 +388,6 @@ GameObject:
   - component: {fileID: 114094997046734764}
   - component: {fileID: 82777210153077426}
   - component: {fileID: 114229396177694536}
-  - component: {fileID: 114358627888683522}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -1424,19 +1423,6 @@ MonoBehaviour:
   allowToggleTo2D: 1
   ScaleUpAudioClip: {fileID: 8300000, guid: ff7b2125a5d84144da2bbc2ba02b2347, type: 3}
   ScaleDownAudioClip: {fileID: 8300000, guid: 9247254b491d6b44d87be3467ca6a6a1, type: 3}
---- !u!114 &114358627888683522
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1815249072880698}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3b4498fe17b9b8f498a6d9a678dee26d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  teleportLocationRoom: {fileID: 0}
-  teleportLocationSmall: {fileID: 0}
 --- !u!114 &114359584103632116
 MonoBehaviour:
   m_ObjectHideFlags: 1
