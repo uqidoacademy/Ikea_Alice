@@ -3841,6 +3841,11 @@ Prefab:
       propertyPath: SpotWhenIsSmall
       value: 
       objectReference: {fileID: 2099332647}
+    - target: {fileID: 33205993336749680, guid: c5080501cfa25854b809371f3f171751,
+        type: 2}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 1522370926}
     - target: {fileID: 23368924309643302, guid: c5080501cfa25854b809371f3f171751,
         type: 2}
       propertyPath: m_Materials.Array.data[0]
@@ -3848,7 +3853,7 @@ Prefab:
       objectReference: {fileID: 2110548020}
     - target: {fileID: 33205993336749680, guid: c5080501cfa25854b809371f3f171751,
         type: 2}
-      propertyPath: m_Mesh
+      propertyPath: teleportLocationRoom
       value: 
       objectReference: {fileID: 1378837952}
     m_RemovedComponents: []
@@ -3859,20 +3864,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1815249072880698, guid: c5080501cfa25854b809371f3f171751,
     type: 2}
   m_PrefabInternal: {fileID: 920686234}
---- !u!114 &920686236
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 920686235}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c3520b0e947ddb74fae3e4f84b6f9103, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  quadToFade: {fileID: 1430480024216502, guid: f1320dc985bbf0f4b90170210ff4d77d, type: 2}
-  teleportLocationRoom: {fileID: 284094359}
-  teleportLocationSmall: {fileID: 2099332648}
 --- !u!1 &940011544
 GameObject:
   m_ObjectHideFlags: 0

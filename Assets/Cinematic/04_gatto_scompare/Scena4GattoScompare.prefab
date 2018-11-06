@@ -84,7 +84,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4814274072878878}
-  - component: {fileID: 114741442080037626}
   m_Layer: 0
   m_Name: Sub04
   m_TagString: Untagged
@@ -564,6 +563,7 @@ GameObject:
   - component: {fileID: 320435820429040348}
   - component: {fileID: 95663806115175844}
   - component: {fileID: 114902972570720466}
+  - component: {fileID: 114881932009304314}
   m_Layer: 0
   m_Name: Scena4GattoScompare
   m_TagString: Untagged
@@ -932,8 +932,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 4649261354245858}
   - {fileID: 4814274072878878}
+  - {fileID: 4649261354245858}
   - {fileID: 4186092683157592}
   - {fileID: 4452084844484206}
   - {fileID: 4888461951017330}
@@ -1353,7 +1353,7 @@ Transform:
   m_LocalScale: {x: 0.35089004, y: 0.35089025, z: 0.35089025}
   m_Children: []
   m_Father: {fileID: 4062031165259876}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4658571549384752
 Transform:
@@ -1454,7 +1454,7 @@ Transform:
   m_Children:
   - {fileID: 4939534595252826}
   m_Father: {fileID: 4062031165259876}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
 --- !u!4 &4859861215242030
 Transform:
@@ -2266,18 +2266,17 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   m_maskType: 0
---- !u!114 &114741442080037626
+--- !u!114 &114881932009304314
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1176810734926514}
+  m_GameObject: {fileID: 1709556556018916}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: dd4c24a95bd3e5b439a3b14decb02054, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mainCam: {fileID: 0}
 --- !u!114 &114882558811879814
 MonoBehaviour:
   m_ObjectHideFlags: 1
