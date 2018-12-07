@@ -61,7 +61,7 @@ GameObject:
   - component: {fileID: 65916797095352362}
   - component: {fileID: 114152384505473286}
   m_Layer: 0
-  m_Name: TavernDoor
+  m_Name: Door
   m_TagString: door
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

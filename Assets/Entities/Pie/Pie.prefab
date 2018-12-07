@@ -30,7 +30,7 @@ GameObject:
   - component: {fileID: 65981500879200900}
   - component: {fileID: 82404463670810592}
   m_Layer: 0
-  m_Name: Biscuit
+  m_Name: Pie
   m_TagString: Food
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -563,6 +563,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SourceAudio: {fileID: 0}
   UseClip: {fileID: 0}
+  initialPosition: {x: 0, y: 0, z: 0}
+  initialScale: {x: 0, y: 0, z: 0}
+  initialRotation: {x: 0, y: 0, z: 0}
+  initialParent: {fileID: 0}
   handAttached: 0
   _currentOperationSize: 0
   portions:
@@ -571,10 +575,14 @@ MonoBehaviour:
   - {fileID: 1437655396541456}
   - {fileID: 1396217989124544}
   cork: {fileID: 0}
+  currentIndex: 0
+  lastChange: 0
   interval: 0.5
   ConsumeAudioSource: {fileID: 82404463670810592}
+  EatingFX: {fileID: 0}
   EatingFXprefab: {fileID: 198270662129213034, guid: fa2b1a36a6954c74ca1091fed3070180,
     type: 2}
+  IsEating: 0
 --- !u!114 &114235244029272932
 MonoBehaviour:
   m_ObjectHideFlags: 1
