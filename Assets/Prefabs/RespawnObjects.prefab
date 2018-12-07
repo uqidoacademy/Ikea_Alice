@@ -222,7 +222,7 @@ GameObject:
   - component: {fileID: 65117706378339488}
   - component: {fileID: 82537930954154166}
   m_Layer: 0
-  m_Name: NewBiscuit
+  m_Name: Biscuit
   m_TagString: Food
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
